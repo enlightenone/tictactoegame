@@ -32,12 +32,12 @@
 	  			<br>
 	  			<span  ng-class="{redhightlight: game.colorSwitch.red }">Red Team</span>
 		  		<div>
-		  		 <span class="redscore" ng-class="{redscore1: redScore[0]}"></span>
-		  		 <span class="redscore" ng-class="{redscore1: redScore[1]}"></span>
-		  		 <span class="redscore" ng-class="{redscore1: redScore[2]}"></span>
+		  		 <span class="redscore" ng-class="{redscore1: player.redScore[0]}"></span>
+		  		 <span class="redscore" ng-class="{redscore1: player.redScore[1]}"></span>
+		  		 <span class="redscore" ng-class="{redscore1: player.redScore[2]}"></span>
 		  		</div>
 	  	    </div>
-	  		<div id="outcome">{{outcome}}</div>
+	  		<div id="outcome">{{game.outcome}}</div>
 	  		<di id="blueteam">
 	  			<span>{{bluePlayerEmail}}</span>
 		  		 <br>
@@ -45,9 +45,9 @@
 	  			 <br>
 	  			<span ng-class="{bluehightlight: game.colorSwitch.blue}">Blue Team</span>
 	  			<div>
-		  		 <span class="bluescore" ng-class="{bluescore1: blueScore[0]}"></span>
-		  		 <span class="bluescore" ng-class="{bluescore1: blueScore[1]}"></span>
-		  		 <span class="bluescore"ng-class="{bluescore1: blueScore[2]}"></span>
+		  		 <span class="bluescore" ng-class="{bluescore1: player.blueScore[0]}"></span>
+		  		 <span class="bluescore" ng-class="{bluescore1: player.blueScore[1]}"></span>
+		  		 <span class="bluescore"ng-class="{bluescore1: player.blueScore[2]}"></span>
 		  		</div>
 
 	  		</div>

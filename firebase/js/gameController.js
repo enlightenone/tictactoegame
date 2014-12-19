@@ -4,13 +4,14 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.turn = true;
 	$scope.game = getGameGrid();
 	$scope.game.grid =["","","","","","","","",""];
+	$scope.game.outcome = null ;
 	$scope.game.colorSwitch = {red: true, blue: false};
 	$scope.game.$save();
 
 	// player related variables
 	$scope.player = getPlayer(); // data initialization
-	$scope.player.redScore = ["1","2","3","4","5"];
-	$scope.player.blueScore = ["2","3","4","5","6"] ;
+	$scope.player.redScore = ["","","","",""];
+	$scope.player.blueScore = ["","","","",""] ;
 	$scope.player.$save();
 
 
@@ -20,7 +21,7 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.bluePosition = [];
 	$scope.mark = "";
 	$scope.count = 0;
-	$scope.outcome = null ;
+	//$scope.outcome = null ;
 
 	// blue and red string join
 	 $scope.blueJointStr = "";
@@ -55,7 +56,7 @@ app.controller("GameController",  function($scope, $firebase){
 			return player;
 		}
 
-//firebase test
+
 
     
 
@@ -160,38 +161,53 @@ app.controller("GameController",  function($scope, $firebase){
 		  function outcomeDisplay(red, blue){
 
 		  	if(red){
-	        	$scope.outcome = "Red Team Won" ;
-	        	
+	        	$scope.game.outcome = "Red Team Won" ;
+	        	$scope.game.$save();
 
-	        	$scope.player.redScore[$scope.redCount](true);
+	        
+
+	        	$scope.player.redScore[$scope.redCount] = true ;
 	        	$scope.player.$save();
+
 	        	$scope.redCount++;
 	        	
-	        	$scope.redOutcome = null ;
+	        	//$scope.redOutcome = null ;
+
+
 	        	$scope.reset();
+	        	$scope.gameWinningFunction();
+
 	        } else if (blue){
-	        	$scope.outcome = "Blue Team Won";
+
+	        	$scope.game.outcome = "Blue Team Won";
+	        	$scope.game.$save();
 	        	
-	        	
-	        	$scope.player.blueScore.$add(true);
+	        	$scope.player.blueScore[$scope.blueCount] = true ;
 	        	$scope.player.$save();
 	        	
 	        	$scope.blueCount++;
-	        	
-	        	$scope.blueOutcome = null ;
+
+	        	//$scope.blueOutcome = null ;
+
 	        	$scope.reset();
+	        	$scope.gameWinningFunction();
+
 	        }else if ($scope.count == 9){
-	        	$scope.outcome = "Game is a Draw";
+	        	$scope.game.outcome = "Game is a Draw";
 	        	$scope.reset();
 	        }
 
 		  }
 
-		  if($scope.redCount == 3){
-		  	$scope.outcome = "Red Team Won The Game";
-		  }else if($scope.blueCount == 3){
-		  	$scope.outcome  = "Blue Team Won The Game";
-		  }
+		$scope.gameWinningFunction =  function() {  
+			  if($scope.redCount == 3){
+			  	$scope.game.outcome = "Red Team Won The Game";
+			  	$scope.game.$save();
+			  }else if($scope.blueCount == 3){
+			  	$scope.game.outcome  = "Blue Team Won The Game";
+			  	$scope.game.$save();
+			  }
+		};
 
 
         
