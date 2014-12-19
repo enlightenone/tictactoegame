@@ -30,7 +30,7 @@
 	  			<br>
 	  			<span>{{redPlayerUserName}}</span>
 	  			<br>
-	  			<span  ng-class="{redhightlight: red}">Red Team</span>
+	  			<span  ng-class="{redhightlight: game.colorSwitch.red }">Red Team</span>
 		  		<div>
 		  		 <span class="redscore" ng-class="{redscore1: redScore[0]}"></span>
 		  		 <span class="redscore" ng-class="{redscore1: redScore[1]}"></span>
@@ -43,7 +43,7 @@
 		  		 <br>
 	  			 <span>{{bluePlayerUserName}}</span>
 	  			 <br>
-	  			<span ng-class="{bluehightlight: blue}">Blue Team</span>
+	  			<span ng-class="{bluehightlight: game.colorSwitch.blue}">Blue Team</span>
 	  			<div>
 		  		 <span class="bluescore" ng-class="{bluescore1: blueScore[0]}"></span>
 		  		 <span class="bluescore" ng-class="{bluescore1: blueScore[1]}"></span>
@@ -122,12 +122,12 @@
 
 	  		<br>
 	  		<br>
-	  		Red Score Array: {{redScore}}
+	  		Red Score Array: {{player.redScore}}
 	  		<br>
 	  		Red Score Count: {{redCount}}
 	  		<br>
 	  		<br>
-	  		Blue Score Array: {{blueScore}}
+	  		Blue Score Array: {{player.blueScore}}
 	  		<br>
 	  		Blue Score Count: {{blueCount}}
 	  		<br>
@@ -138,6 +138,14 @@
 	  		<br>
 	  		<br>
 	  		Grid Firebase Content:{{game.grid}}
+	  		<br>
+	  		<br>
+	  		Color Switch Red: {{game.colorSwitch.red}}
+	  		<br>
+	  		Color Switch Blue: {{game.colorSwitch.blue}}
+
+
+
 
 	  	<div>
 	  </footer>

@@ -18,7 +18,7 @@ header {
 
 #redteam{
 	height: 200px;
-	width: 250px;
+	width: 200px;
 	border: 3px solid blue;
 	text-align: center;
 	line-height: 50px;
@@ -27,7 +27,7 @@ header {
 
 #outcome{
 	height: 200px;
-	width: 250px;
+	width: 200px;
 	border: 3px solid green;
 	text-align: center;
 	line-height: 100px;
@@ -36,7 +36,7 @@ header {
 
 #blueteam{
 	height: 200px;
-	width: 250px;
+	width: 200px;
 	border: 3px solid black;
 	text-align: center;
 	line-height: 50px;

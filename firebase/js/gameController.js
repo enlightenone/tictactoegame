@@ -1,16 +1,24 @@
 app.controller("GameController",  function($scope, $firebase){
 
+	// game related variables
 	$scope.turn = true;
 	$scope.game = getGameGrid();
 	$scope.game.grid =["","","","","","","","",""];
+	$scope.game.colorSwitch = {red: true, blue: false};
 	$scope.game.$save();
+
+	// player related variables
+	$scope.player = getPlayer(); // data initialization
+	$scope.player.redScore = ["1","2","3","4","5"];
+	$scope.player.blueScore = ["2","3","4","5","6"] ;
+	$scope.player.$save();
+
+
 	$scope.redTeam = [];
 	$scope.blueTeam = [];
-	$scope.redPosition = [{},{},{},{},{},{},{},{},{}];
-	$scope.bluePosition = [{},{},{},{},{},{},{},{},{}];
+	$scope.redPosition = [];
+	$scope.bluePosition = [];
 	$scope.mark = "";
-	$scope.red = true;
-	$scope.blue = false;
 	$scope.count = 0;
 	$scope.outcome = null ;
 
@@ -21,8 +29,8 @@ app.controller("GameController",  function($scope, $firebase){
 	 //blue and red display related variables
 	 $scope.redCount = 0;
      $scope.blueCount = 0 ;
-     $scope.redScore  = [];
-	 $scope.blueScore = [];
+     //$scope.redScore  = [];
+	 //$scope.blueScore = [];
 
 	 //Plyaer registeration function
 	 $scope.redPlayerEmail ="";
@@ -31,11 +39,20 @@ app.controller("GameController",  function($scope, $firebase){
 	 $scope.bluePlayerUserName = "";
 
 
+     // Retrieve data from Firebase;
 
-		function getGameGrid(){
+      // general game related data from Firebase
+	 function getGameGrid(){
 			var ref = new Firebase('https://sctttapp.firebaseio.com/game')
 			var game = $firebase(ref).$asObject();
 			return game;
+		}
+
+	// player related data from Firebase
+	function getPlayer(){
+			var ref = new Firebase('https://sctttapp.firebaseio.com/player')			
+			var player = $firebase(ref).$asObject();
+			return player;
 		}
 
 //firebase test
@@ -77,11 +94,13 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.colorSwitch = function(t){
 
 		if (t){
-			 $scope.red = true;
-			 $scope.blue = false;
+			 $scope.game.colorSwitch.red = true;
+			 $scope.game.colorSwitch.blue = false;
+			 $scope.game.$save();
 		} else {
-			 $scope.red = false;
-			 $scope.blue = true;
+			 $scope.game.colorSwitch.red = false;
+			 $scope.game.colorSwitch.blue = true;
+			 $scope.game.$save();
 
 		}
 
@@ -142,14 +161,23 @@ app.controller("GameController",  function($scope, $firebase){
 
 		  	if(red){
 	        	$scope.outcome = "Red Team Won" ;
+	        	
+
+	        	$scope.player.redScore[$scope.redCount](true);
+	        	$scope.player.$save();
 	        	$scope.redCount++;
-	        	$scope.redScore.push(true);
+	        	
 	        	$scope.redOutcome = null ;
 	        	$scope.reset();
 	        } else if (blue){
 	        	$scope.outcome = "Blue Team Won";
+	        	
+	        	
+	        	$scope.player.blueScore.$add(true);
+	        	$scope.player.$save();
+	        	
 	        	$scope.blueCount++;
-	        	$scope.blueScore.push(true);
+	        	
 	        	$scope.blueOutcome = null ;
 	        	$scope.reset();
 	        }else if ($scope.count == 9){
@@ -173,14 +201,14 @@ app.controller("GameController",  function($scope, $firebase){
 
 			$scope.turn = true;
 			$scope.game.grid = ["","","","","","","","",""];
-			$scope.game.grid.$save();
+			$scope.game.$save();
 			$scope.redTeam = [];
 			$scope.blueTeam = [] ;
 			$scope.redPosition = [];
 			$scope.bluePosition = [] ;
 			$scope.mark = "";
-			$scope.red = true;
-			$scope.blue = false;
+			$scope.game.colorSwitch.red = true;
+			$scope.game.colorSwitch.blue = false;
 			$scope.count = 0;
 			$scope.redOutcome = null;
 			$scope.blueOutcome = null ;
