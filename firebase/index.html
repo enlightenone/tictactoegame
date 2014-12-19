@@ -29,8 +29,8 @@
 	  			<span>{{redPlayerEmail}}</span>
 	  			<br>
 	  			<span>{{redPlayerUserName}}</span>
-	  			<br>
-	  			<span  ng-class="{redhightlight: game.colorSwitch.red }">Red Team</span>
+	  			<span  ng-class="{redhightlight: game.colorSwitch.red }">Red Team</span><br>
+		  		<span>Red Total Scores: {{player.redTotalScores}}</span>
 		  		<div>
 		  		 <span class="redscore" ng-class="{redscore1: player.redScore[0]}"></span>
 		  		 <span class="redscore" ng-class="{redscore1: player.redScore[1]}"></span>
@@ -42,8 +42,8 @@
 	  			<span>{{bluePlayerEmail}}</span>
 		  		 <br>
 	  			 <span>{{bluePlayerUserName}}</span>
-	  			 <br>
-	  			<span ng-class="{bluehightlight: game.colorSwitch.blue}">Blue Team</span>
+	  			<span ng-class="{bluehightlight: game.colorSwitch.blue}">Blue Team</span><br>
+	  			<span>Blue Total Scores: {{player.blueTotalScores}}</span>
 	  			<div>
 		  		 <span class="bluescore" ng-class="{bluescore1: player.blueScore[0]}"></span>
 		  		 <span class="bluescore" ng-class="{bluescore1: player.blueScore[1]}"></span>

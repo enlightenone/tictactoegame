@@ -18,27 +18,20 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.player.blueTeam = ["","","","",""];
 	$scope.player.redPosition = ["","","","","","","","",""];
 	$scope.player.bluePosition = ["","","","","","","","",""];
+
+	$scope.player.redTotalScores = 0 ;
+	$scope.player.blueTotalScores = 0 ;
 	$scope.player.redCount = 0;
     $scope.player.blueCount = 0 ;
 	$scope.player.$save();
 
 
-	//$scope.redTeam = [];
-	//$scope.blueTeam = [];
-	//$scope.redPosition = [];
-	//$scope.bluePosition = [];
 	$scope.mark = "";
-	//$scope.outcome = null ;
 
 	// blue and red string join
 	 $scope.blueJointStr = "";
 	 $scope.redJointStr = "";
 
-	 //blue and red display related variables
-	 //$scope.redCount = 0;
-     //$scope.blueCount = 0 ;
-     //$scope.redScore  = [];
-	 //$scope.blueScore = [];
 
 	 //Plyaer registeration function
 	 $scope.redPlayerEmail ="";
@@ -73,6 +66,9 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.gamePlay = function(g, p){
             $scope.game.count++;
             $scope.game.$save();
+            
+
+    if($scope.game.grid[g] == ""){    // function to disable the space after being chosen.   
 		if ($scope.game.turn){
 			$scope.mark ="X"
 			$scope.player.redPosition[g] = p ;
@@ -100,7 +96,7 @@ app.controller("GameController",  function($scope, $firebase){
 
     	$scope.outcomeCalculate();
 
-
+      }
 
 	};
 	
@@ -213,9 +209,13 @@ app.controller("GameController",  function($scope, $firebase){
 
 		$scope.gameWinningFunction =  function() {  
 			  if($scope.player.redCount == 3){
-			  	$scope.game.outcome = "Red Team Won The Game";
+			  	$scope.player.redTotalScores++;
+			  	$scope.player.$save();
+			  	$scope.game.outcome = "Red Team Won The Game";			  	
 			  	$scope.game.$save();
 			  }else if($scope.player.blueCount == 3){
+			  	$scope.player.blueTotalScores++;
+			  	$scope.player.$save();
 			  	$scope.game.outcome  = "Blue Team Won The Game";
 			  	$scope.game.$save();
 			  }
