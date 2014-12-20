@@ -26,18 +26,15 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.player.$save();
 
 
+	// players related variables
+	$scope.players = getPlayers();
+
 	$scope.mark = "";
 
 	// blue and red string join
 	 $scope.blueJointStr = "";
 	 $scope.redJointStr = "";
 
-
-	 //Plyaer registeration function
-	 $scope.redPlayerEmail ="";
-	 $scope.redPlayerUserName = "";
-	 $scope.bluePlayerEmail ="";
-	 $scope.bluePlayerUserName = "";
 
 
      // Retrieve data from Firebase;
@@ -56,9 +53,13 @@ app.controller("GameController",  function($scope, $firebase){
 			return player;
 		}
 
+	// player related data from Firebase
+	function getPlayers(){
+			var ref = new Firebase('https://sctttapp.firebaseio.com/players')			
+			var players = $firebase(ref).$asObject();
+			return players;
+		}
 
-
-    
 
 
 
@@ -248,8 +249,74 @@ app.controller("GameController",  function($scope, $firebase){
 
 	};
 
+});
+
+// User Log in Users Controller
+app.controller("UsersController",  function($scope, $firebase){
+	
+	    function makeId(){
+		    var text = ""
+		    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		    for( var i=0; i < 5; i++ )
+		        text += possible.charAt(Math.floor(Math.random() * possible.length));
+		    return text;
+      }
+
+     var uniqueId = makeId();
+
+	function getPlayer(){
+			var ref = new Firebase('https://sctttapp.firebaseio.com/players')			
+			var players = $firebase(ref).$asObject();
+			return players;
+		}
+
+	//Players profiles variables
+	$scope.players = getPlayer();
+
+    $scope.players.redPlayer = {userName: "", email: ""};
+    $scope.players.bluePlayer = {userName: "", email: ""};
+    $scope.players.$save();
+
+    $scope.redUserName = null ;
+    $scope.redEmail = null  ;
+
+    $scope.blueUserName = null ;
+    $scope.blueEmail = null ;
 
 
+
+
+   
+   $scope.addPlayer = function(redUserName, redEmail, blueUserName, blueEmail) {
+      
+
+
+      // Red Player
+   	    if(redUserName && redEmail ){
+   	        $scope.players.redPlayer.userName = $scope.redUserName ;
+   	        $scope.players.redPlayer.email = $scope.redEmail ;
+   	        $scope.players.redPlayer.id = uniqueId ;
+   	        $scope.players.redPlayer.redRegisterFlag = true ;
+    		$scope.redUserName = null ;
+    		$scope.redEmail = null ;
+    		$scope.players.$save();
+         }
+	  // Blue Player
+
+   	    if(blueUserName && blueEmail){
+   	        $scope.players.bluePlayer.userName = $scope.blueUserName ;
+   	        $scope.players.bluePlayer.email = $scope.blueEmail ;
+   	     	$scope.players.bluePlayer.id = uniqueId ;
+   	        $scope.players.bluePlayer.redRegisterFlag = true ;
+    		$scope.blueUserName = null ;
+    		$scope.blueEmail = null ;
+    		$scope.players.$save();
+   	    }
+
+
+
+
+	};
 
 
 
