@@ -273,8 +273,8 @@ app.controller("UsersController",  function($scope, $firebase){
 	//Players profiles variables
 	$scope.players = getPlayer();
 
-    $scope.players.redPlayer = {userName: "", email: ""};
-    $scope.players.bluePlayer = {userName: "", email: ""};
+    $scope.players.redPlayer = {userName: "", email: "", redRegisterFlag: false};
+    $scope.players.bluePlayer = {userName: "", email: "", blueRegisterFlag: false};
     $scope.players.$save();
 
     $scope.redUserName = null ;
@@ -292,7 +292,7 @@ app.controller("UsersController",  function($scope, $firebase){
 
 
       // Red Player
-   	    if(redUserName && redEmail ){
+   	    if(redUserName && redEmail && ($scope.players.bluePlayer.blueRegisterFlag == false) ){
    	        $scope.players.redPlayer.userName = $scope.redUserName ;
    	        $scope.players.redPlayer.email = $scope.redEmail ;
    	        $scope.players.redPlayer.id = uniId  ;
@@ -303,11 +303,11 @@ app.controller("UsersController",  function($scope, $firebase){
          }
 	  // Blue Player
 
-   	    if(blueUserName && blueEmail){
+   	    if(blueUserName && blueEmail && ($scope.players.redPlayer.redRegisterFlag == false) ){
    	        $scope.players.bluePlayer.userName = $scope.blueUserName ;
    	        $scope.players.bluePlayer.email = $scope.blueEmail ;
    	     	$scope.players.bluePlayer.id = uniId  ;
-   	        $scope.players.bluePlayer.redRegisterFlag = true ;
+   	        $scope.players.bluePlayer.blueRegisterFlag = true ;
     		$scope.blueUserName = null ;
     		$scope.blueEmail = null ;
     		$scope.players.$save();
@@ -315,6 +315,25 @@ app.controller("UsersController",  function($scope, $firebase){
 
 
 
+
+	};
+
+	$scope.unregister = function (player) { 
+
+
+		if(player == "red"){
+			$scope.players.redPlayer.userName = null;
+   	        $scope.players.redPlayer.email = null ;
+   	        $scope.players.redPlayer.redRegisterFlag = false ;
+   	        $scope.players.$save();
+
+		}else if(player == "blue"){
+		   	$scope.players.bluePlayer.userName = null ;
+   	        $scope.players.bluePlayer.email = null ;
+   	        $scope.players.bluePlayer.blueRegisterFlag = false ;
+    		$scope.players.$save();
+
+		}
 
 	};
 
