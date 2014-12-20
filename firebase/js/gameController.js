@@ -262,7 +262,7 @@ app.controller("UsersController",  function($scope, $firebase){
 		    return text;
       }
 
-     var uniqueId = makeId();
+     var uniId = makeId();
 
 	function getPlayer(){
 			var ref = new Firebase('https://sctttapp.firebaseio.com/players')			
@@ -295,7 +295,7 @@ app.controller("UsersController",  function($scope, $firebase){
    	    if(redUserName && redEmail ){
    	        $scope.players.redPlayer.userName = $scope.redUserName ;
    	        $scope.players.redPlayer.email = $scope.redEmail ;
-   	        $scope.players.redPlayer.id = uniqueId ;
+   	        $scope.players.redPlayer.id = uniId  ;
    	        $scope.players.redPlayer.redRegisterFlag = true ;
     		$scope.redUserName = null ;
     		$scope.redEmail = null ;
@@ -306,7 +306,7 @@ app.controller("UsersController",  function($scope, $firebase){
    	    if(blueUserName && blueEmail){
    	        $scope.players.bluePlayer.userName = $scope.blueUserName ;
    	        $scope.players.bluePlayer.email = $scope.blueEmail ;
-   	     	$scope.players.bluePlayer.id = uniqueId ;
+   	     	$scope.players.bluePlayer.id = uniId  ;
    	        $scope.players.bluePlayer.redRegisterFlag = true ;
     		$scope.blueUserName = null ;
     		$scope.blueEmail = null ;
