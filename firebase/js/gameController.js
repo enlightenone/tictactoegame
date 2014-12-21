@@ -262,7 +262,8 @@ app.controller("UsersController",  function($scope, $firebase){
 		    return text;
       }
 
-     var uniId = makeId();
+     $scope.uniId = makeId();
+     $scope.uniId2 = ($scope.uniId2 == $scope.uniId)? makeId(): makeId();
 
 	function getPlayer(){
 			var ref = new Firebase('https://sctttapp.firebaseio.com/players')			
@@ -273,7 +274,7 @@ app.controller("UsersController",  function($scope, $firebase){
 	//Players profiles variables
 	$scope.players = getPlayer();
 
-    $scope.players.redPlayer = {userName: "", email: "", redRegisterFlag: false};
+    $scope.players.redPlayer = {userName: "", email: "", redRegisterFlag: false };
     $scope.players.bluePlayer = {userName: "", email: "", blueRegisterFlag: false};
     $scope.players.$save();
 
@@ -303,7 +304,8 @@ app.controller("UsersController",  function($scope, $firebase){
          }
 	  // Blue Player
 
-   	    if(blueUserName && blueEmail && ($scope.players.redPlayer.redRegisterFlag == false) ){
+   	    if(blueUserName && blueEmail && ($scope.players.redPlayer.redRegisterFlag == false) 
+   	    	){
    	        $scope.players.bluePlayer.userName = $scope.blueUserName ;
    	        $scope.players.bluePlayer.email = $scope.blueEmail ;
    	     	$scope.players.bluePlayer.id = uniId  ;
@@ -317,6 +319,8 @@ app.controller("UsersController",  function($scope, $firebase){
 
 
 	};
+
+	// Unregister user
 
 	$scope.unregister = function (player) { 
 
