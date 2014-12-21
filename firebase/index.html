@@ -75,16 +75,13 @@
 	    <div id="register_box" class="wrapper" ng-controller="UsersController as users">
 	    	<div style="float: left">
 	    		<div ng-hide="players.redPlayer.redRegisterFlag">  <!-- register form -->
-	    			Red Team Unicode Id: {{uniId}}
-	    			<br>
-	    			Blue Team Unicode Id: {{uniId2}}
-	    			<br>
 
-	    		   <form ng-submit="addPlayer(redUserName, redEmail)">
+
+	    		   <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
                        <input type="text" ng-model="redUserName" placeholder="Add  Red User Name">
                    </form>
                    <br><br>
-              	    <form ng-submit="addPlayer(redUserName, redEmail)">
+              	    <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
                        <input type="text" ng-model="redEmail" placeholder="Add  Red User Email">
                    </form>
                 </div>
