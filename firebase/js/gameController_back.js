@@ -287,6 +287,8 @@ app.controller("UsersController",  function($scope, $firebase){
 
 
 
+
+
    
    $scope.addPlayer = function(redUserName, redEmail, blueUserName, blueEmail) {
       
