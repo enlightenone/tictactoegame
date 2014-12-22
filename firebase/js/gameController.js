@@ -274,8 +274,10 @@ app.controller("UsersController",  function($scope, $firebase){
 	//Players profiles variables
 	$scope.players = getPlayer();
 
-    $scope.players.redPlayer = {userName: "", email: "", redRegisterFlag: false };
-    $scope.players.bluePlayer = {userName: "", email: "", blueRegisterFlag: false};
+    $scope.players.redPlayer = {userName: "", email: "", redRegisterFlag: false,
+                                redRegiField: true, redLeaveField: false};
+    $scope.players.bluePlayer = {userName: "", email: "", blueRegisterFlag: false,
+								blueRegiField: true, blueLeaveField: false};
     $scope.players.$save();
 
     $scope.redUserName = null ;
@@ -290,38 +292,76 @@ app.controller("UsersController",  function($scope, $firebase){
     $scope.blueRegiField = true ;
     $scope.blueLeaveField = false ;
 
+    $scope.test1 = true;
+    $scope.test2 = false;
+
     $scope.fieldSettings = function(redR, redL, blueR, blueL){
-			   	$scope.redRegiField = redR ;
-			    $scope.redLeaveField = redL ;
-			    $scope.blueRegiField = blueR ;
-			    $scope.blueLeaveField = blueL ;
+			   	$scope.players.redRegiField = redR ;
+			    $scope.players.redLeaveField = redL ;
+			    $scope.players.blueRegiField = blueR ;
+			    $scope.players.blueLeaveField = blueL ;
 
    	};
 
 
 
 
+   	$scope.switchingFields = function (){
+
+   		if($scope.players.redPlayer.redRegisterFlag == true){
+ 
+ 		
+   			// if($scope.players.redPlayer.id == $scope.uniId){ 
+			   	$scope.redRegiField = false ;
+			    $scope.redLeaveField = true ;
+			    $scope.blueRegiField = false ;
+			    $scope.blueLeaveField = false;
+		   // }
 
 
+		   if($scope.players.redPlayer.id != $scope.uniId){
+
+		    	alert("hello");
+   		    	$scope.redRegiField = false ;
+			    $scope.redLeaveField = false ;
+			    $scope.blueRegiField = true ;
+			    $scope.blueLeaveField = false ;
+			  }
+
+   		    
+
+   		// if($scope.players.bluePlayer.blueRegisterFlag == true){
+            // }
+
+
+   		}
+
+
+
+   	};
+
+
+   $scope.switchingFields(); // switching functions;
    
+
    $scope.addPlayer = function(redUserName, redEmail, blueUserName, blueEmail) {
       
 
 
       // Red Player
-   	    if(redUserName && redEmail && ($scope.players.bluePlayer.blueRegisterFlag == false) ){
+   	    if(redUserName && redEmail ){
    	        $scope.players.redPlayer.userName = $scope.redUserName ;
    	        $scope.players.redPlayer.email = $scope.redEmail ;
    	        $scope.players.redPlayer.id = $scope.uniId  ;
    	        $scope.players.redPlayer.redRegisterFlag = true ;
+   	        $scope.switchingFields();
     		$scope.redUserName = null ;
     		$scope.redEmail = null ;
     		$scope.players.$save();
          }
 	  // Blue Player
 
-   	    if(blueUserName && blueEmail && ($scope.players.redPlayer.redRegisterFlag == false) 
-   	    	){
+   	    if(blueUserName && blueEmail){
    	        $scope.players.bluePlayer.userName = $scope.blueUserName ;
    	        $scope.players.bluePlayer.email = $scope.blueEmail ;
    	     	$scope.players.bluePlayer.id = $scope.uniId  ;
