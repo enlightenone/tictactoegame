@@ -253,7 +253,29 @@ app.controller("GameController",  function($scope, $firebase){
 
 // User Log in Users Controller
 app.controller("UsersController",  function($scope, $firebase){
+	
 
+	function getPlayer(){
+			var ref = new Firebase('https://sctttapp.firebaseio.com/players')			
+			var players = $firebase(ref).$asObject();
+			return players;
+		}
+
+	//Players profiles variables
+
+
+		$scope.players = getPlayer();
+
+    
+    if ($scope.players.player1 == undefined){
+    	$scope.players.player1 = {userName: "helllo1", email: "", side: "", seated: false};
+    	$scope.players.$save();
+ 	}
+
+     if ($scope.players.player2 == undefined){
+    	$scope.players.player2 = {userName: "helllo", email: "", side: "", seated: false};
+    	$scope.players.$save();
+ 	}
 
 
 	  function makeId(){
@@ -264,71 +286,24 @@ app.controller("UsersController",  function($scope, $firebase){
 		        text += possible.charAt(Math.floor(Math.random() * possible.length));
 		    return text;
      }
-	
-	//$scope.uniId = makeId() ;
 
-	function getPlayer(){
-			var ref = new Firebase('https://sctttapp.firebaseio.com/players')			
-			var players = $firebase(ref).$asObject();
-			return players;
-		}
+   if($scope.players.player1.id == undefined){
+			//$scope.uniId = makeId();
+			$scope.players.player1.id = makeId()  ;
+			$scope.uniId = $scope.players.player1.id ;
+			$scope.players.$save();
 
-
-		var players = getPlayer();
-
-		players.$bindTo($scope, 'players');
+   }
 
 
 
+   if ($scope.players.player1.id){
+			//$scope.uniId2 = makeId();
+			$scope.players.player2.id = makeId() ;
+			$scope.uniId2 = $scope.players.player2.id ;
+			$scope.players.$save();
 
-
-  //     if (players.player1.unid){
-		// 	$scope.uniId = makeId();
-		// 	players.player2.unid = $scope.uniId ;
-		// 	 players.player2 ={userName: "helllo1", email: "", side: "", seated: false};
-		// 	$scope.uniId2 = $scope.players.player2.id ;
-		// players.$save();
-
-  //  }
-
-    
-  //   if ($scope.players.player1 == undefined){
-  //   	$scope.players.player1 = {userName: "helllo1", email: "", side: "", seated: false};
-  //   	$scope.players.$save();
- 	// }
-
-  //    if ($scope.players.player2 == undefined){
-  //   	$scope.players.player2 = {userName: "helllo", email: "", side: "", seated: false};
-  //   	$scope.players.$save();
- 	// }
-
-
-	 //  function makeId(){
-		//     var text = ""
-
-		//     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-		//     for( var i=0; i < 5; i++ )
-		//         text += possible.charAt(Math.floor(Math.random() * possible.length));
-		//     return text;
-  //    }
-
-  //  if($scope.players.player1.id == undefined){
-		// 	//$scope.uniId = makeId();
-		// 	$scope.players.player1.id = makeId()  ;
-		// 	$scope.uniId = $scope.players.player1.id ;
-		// 	$scope.players.$save();
-
-  //  }
-
-
-
-  //  if ($scope.players.player1.id){
-		// 	//$scope.uniId2 = makeId();
-		// 	$scope.players.player2.id = makeId() ;
-		// 	$scope.uniId2 = $scope.players.player2.id ;
-		// 	$scope.players.$save();
-
-  //  }
+   }
 
 
 

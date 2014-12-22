@@ -75,12 +75,10 @@
 	    <div id="register_box" class="wrapper" ng-controller="UsersController as users">
 	    	<div>
 	    		Unique Id: {{uniId }}<br>
-	    		<span>Red Id: {{players.redPlayer.id}}</span><br>
+	    		Unique Id2: {{uniId }}<br>
 	    	</div>
 	    	<div style="float: left">
-	    		<div ng-show"redRegiField">  <!-- register form -->
-
-
+<!-- 	    		<div ng-show"redRegiField">  
 	    		   <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
                        <input type="text" ng-model="redUserName" placeholder="Add  Red User Name">
                    </form>
@@ -91,10 +89,10 @@
                 </div>
                 <div ng-show="redLeaveField" style="margin-top: 20px;">
                 	<button type="button" ng-click="unregister('red')">Leave</button>
-                </div>
+                </div> -->
 	    	</div>
 	    	<div  style="float: right" >
-	    		<div ng-show="blueRegiField"> 
+<!-- 	    		<div ng-show="blueRegiField"> 
 	    		   <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
                        <input type="text" ng-model="blueUserName" placeholder="Add  Blue User Name">
                    </form>
@@ -106,7 +104,7 @@
                 <div ng-show="blueLeaveField" style="margin-top: 20px;">
                 	<button type="button" ng-click="unregister('blue')">Leave</button>
                 </div>
-	    	</div>
+	    	</div> -->
 	      </div>
 	  </section>
 	  <footer>
