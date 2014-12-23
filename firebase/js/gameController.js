@@ -292,6 +292,8 @@ app.controller("UsersController",  function($scope, $firebase){
       	 		fb.$update('blue', {occupied: false, player: ""});
       	 	}
 
+      	 	$scope.resetDisplay = true ;
+
 
       	}else if (option == 'blue'){
       	    fb.$update(option, { occupied: true });
@@ -302,7 +304,7 @@ app.controller("UsersController",  function($scope, $firebase){
       	 		fb.$update('red', {occupied: false, player: ""});
       	 	}
 
-
+            $scope.resetDisplay = true ; 
 		}
 
       
@@ -310,11 +312,16 @@ app.controller("UsersController",  function($scope, $firebase){
 
 
       $scope.reset = function(){
-      	 fb.$set({
-      	 	blue: {occupied: false, player: ""},
-      	 	red: {occupied: false, player: ""}
-      	 });
-      	}
+
+      		$scope.resetDisplay = false ;
+
+      	   if(players.blue.player == $scope.uniId ){
+      	   	  fb.$update('blue', {occupied: false, player: ""});
+      	    }else if(players.red.player == $scope.uniId ) {
+      	   	  fb.$update('red', {occupied: false, player: ""});
+      	   }
+
+      	};
 
 
   //     if (players.player1.unid){

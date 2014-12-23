@@ -81,8 +81,9 @@
 	    				Red
 	    			</button>
 	    			<br>
-	    			<br>
-	    			<button ng-click="reset()">Reset</button>
+	   
+	    			Reset Display1: {{resetDisplay}}<br>
+	    			<button ng-click="reset()" ng-show="resetDisplay" >Reset</button>
 <!-- 	    		<div ng-show"redRegiField">  
 	    		   <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
                        <input type="text" ng-model="redUserName" placeholder="Add  Red User Name">
