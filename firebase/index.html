@@ -75,9 +75,14 @@
 	    <div id="register_box" class="wrapper" ng-controller="UsersController as users">
 	    	<div>
 	    		Unique Id: {{uniId }}<br>
-	    		Unique Id2: {{uniId }}<br>
 	    	</div>
 	    	<div style="float: left">
+	    			<button class="sideoption" ng-click="chooseOption('red')" ng-class="{sideoption_clicked: players.red.occupied }" ng-disabled="players.red.occupied">
+	    				Red
+	    			</button>
+	    			<br>
+	    			<br>
+	    			<button ng-click="reset()">Reset</button>
 <!-- 	    		<div ng-show"redRegiField">  
 	    		   <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
                        <input type="text" ng-model="redUserName" placeholder="Add  Red User Name">
@@ -92,6 +97,9 @@
                 </div> -->
 	    	</div>
 	    	<div  style="float: right" >
+	    			<button class="sideoption" ng-click="chooseOption('blue')" ng-class="{sideoption_clicked: players.blue.occupied }" ng-disabled="players.blue.occupied">
+	    				Blue
+	    			</button>
 <!-- 	    		<div ng-show="blueRegiField"> 
 	    		   <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
                        <input type="text" ng-model="blueUserName" placeholder="Add  Blue User Name">

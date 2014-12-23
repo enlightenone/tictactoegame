@@ -264,22 +264,57 @@ app.controller("UsersController",  function($scope, $firebase){
 		        text += possible.charAt(Math.floor(Math.random() * possible.length));
 		    return text;
      }
-	
-	//$scope.uniId = makeId() ;
-
-	function getPlayer(){
-			var ref = new Firebase('https://sctttapp.firebaseio.com/players')			
-			var players = $firebase(ref).$asObject();
-			return players;
-		}
 
 
-		var players = getPlayer();
+      $scope.uniId  = makeId();
+
+
+     		/*......define database................*/
+
+			var ref = new Firebase('https://sctttapp.firebaseio.com/players')
+			var fb = $firebase(ref)			
+			var players = fb.$asObject();
+          /*........................................*/
+
 
 		players.$bindTo($scope, 'players');
 
 
+      $scope.chooseOption = function(option){
 
+
+      	if(option == 'red'){
+      		fb.$update(option, { occupied: true });
+      		fb.$update(option, { player: $scope.uniId });
+      	 	
+      	 	if((players.blue.occupied == true) 
+      	 		&& (players.blue.player == $scope.uniId)){
+      	 		fb.$update('blue', {occupied: false, player: ""});
+      	 	}
+
+
+      	}else if (option == 'blue'){
+      	    fb.$update(option, { occupied: true });
+      		fb.$update(option, { player: $scope.uniId });
+      	 	
+      	 	if((players.red.occupied == true) 
+      	 		&& (players.red.player == $scope.uniId)){
+      	 		fb.$update('red', {occupied: false, player: ""});
+      	 	}
+
+
+		}
+
+      
+      };
+
+
+      $scope.reset = function(){
+      	 fb.$set({
+      	 	blue: {occupied: false, player: ""},
+      	 	red: {occupied: false, player: ""}
+      	 });
+      	}
 
 
   //     if (players.player1.unid){

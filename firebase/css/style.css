@@ -118,20 +118,36 @@ footer {
 #register_box{
 
 	border:4px solid blue; 
-	height: 120px;
+	height: 250px;
 	margin-top: 30px;
 	padding: 15px;
 
 
 }
 
-
-.test2 {
-	border: 3px solid red;
-
+.sideoption{
+	width: 250px;
+	height: 100px;
+	background-color: #2E31F5 ;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: 50px;
+	text-align: center;
+	line-height: 100px;
+	color: white;
 }
-.test1{
-	
-	border: 3px solid blue;
 
+
+.sideoption_clicked {
+	width: 250px;
+	height: 100px;
+	background-color: #FAE9AC ;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: 50px;
+	text-align: center;
+	line-height: 100px;
+	color: #09C7D5;
 }
+
+
