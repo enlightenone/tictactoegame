@@ -162,12 +162,12 @@ footer {
 
 .play_button{
 
-	width: 250px;
+	width: 300px;
 	height: 100px;
 	background-color: #2E31F5 ;
 	border-radius: 10px;
 	font-weight: bold;
-	font-size: 50px;
+	font-size: 45px;
 	text-align: center;
 	line-height: 100px;
 	color: white;

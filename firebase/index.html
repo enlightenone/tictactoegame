@@ -81,15 +81,20 @@
 	    				Red
 	    			</button>
 	    			<br>
-	   
-	    			Reset Display1: {{resetDisplay}}<br>
-	    			<button ng-click="reset()" ng-show="resetDisplay" >Reset</button>
+	   				
+	    			Unseated Function Display: {{unseatedDisplay}}<br>
+	    			PlayAgainFlag Flag:{{game.playAgainFlag}}<br>
+	    			GameStart: {{game.gameStart}}<br>
+
+	    			<button ng-click="unseated()" ng-show="unseatedDisplay" >Leave</button>
 
 	    	</div>
 	    	<div class="play_game">
-	    			<button class="play_button" ng-click="gameCommence()" ng-show="(players.blue.occupied && players.red.occupied)" ng-hide="game.gameStart">
-	    				Play
+	    			<button class="play_button" ng-click="startGame()" ng-show="(players.blue.occupied && players.red.occupied)" ng-hide="game.gameStart">
+						<span ng-hide="game.playAgainFlag">Play</span>
+						<span ng-show="game.playAgainFlag">Play Again?</span>
 	    			</button>
+
 
 	    	</div>
 	    	<div  style="float: right" >

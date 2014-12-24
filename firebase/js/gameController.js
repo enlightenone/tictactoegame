@@ -8,6 +8,8 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.game.outcome = null ;
 	$scope.game.colorSwitch = {red: true, blue: false};
 	$scope.game.count = 0 ;
+	$scope.game.playAgainFlag = false;
+	$scope.game.gameStart = false ;
 	$scope.game.$save();
 
 	// player related variables
@@ -167,7 +169,7 @@ app.controller("GameController",  function($scope, $firebase){
 
 
 
-		  function outcomeDisplay(red, blue){
+		 $scope.outcomeDisplay = function(red, blue){
 
 		  	if(red){
 	        	$scope.game.outcome = "Red Team Won" ;
@@ -179,12 +181,12 @@ app.controller("GameController",  function($scope, $firebase){
 	        	$scope.player.$save();
 
 	        	$scope.player.redCount++;
-	        	
-	        	//$scope.redOutcome = null ;
 
 
 	        	$scope.reset();
 	        	$scope.gameWinningFunction();
+	        	
+
 
 	        } else if (blue){
 
@@ -196,17 +198,16 @@ app.controller("GameController",  function($scope, $firebase){
 	        	
 	        	$scope.player.blueCount++;
 
-	        	//$scope.blueOutcome = null ;
-
 	        	$scope.reset();
 	        	$scope.gameWinningFunction();
+	        	
 
 	        }else if ($scope.game.count == 9){
 	        	$scope.game.outcome = "Game is a Draw";
 	        	$scope.reset();
 	        }
 
-		  }
+		  };
 
 		$scope.gameWinningFunction =  function() {  
 			  if($scope.player.redCount == 3){
@@ -214,17 +215,19 @@ app.controller("GameController",  function($scope, $firebase){
 			  	$scope.player.$save();
 			  	$scope.game.outcome = "Red Team Won The Game";			  	
 			  	$scope.game.$save();
+			  	$scope.afterWinFunction();
 			  }else if($scope.player.blueCount == 3){
 			  	$scope.player.blueTotalScores++;
 			  	$scope.player.$save();
 			  	$scope.game.outcome  = "Blue Team Won The Game";
 			  	$scope.game.$save();
+			  	$scope.afterWinFunction();
 			  }
 		};
 
 
         
-	   outcomeDisplay($scope.redOutcome, $scope.blueOutcome);
+	   $scope.outcomeDisplay($scope.redOutcome, $scope.blueOutcome);
 
 	   $scope.reset = function( ){
 
@@ -244,18 +247,65 @@ app.controller("GameController",  function($scope, $firebase){
 			$scope.redOutcome = null;
 			$scope.blueOutcome = null ;
 
+
+
 	   }
 
 
 	};
-
 	// Game start function
-	$scope.gameCommence = function(){ 
+	$scope.startGame = function(){ 
 		$scope.game.gameStart = true ;
 		$scope.game.$save();
 	};
 
+	// After Win Function
+	$scope.afterWinFunction = function(){
+
+		  $scope.game.playAgainFlag = true;
+		  $scope.game.$save();
+		  $scope.game.gameStart = false ;
+		  $scope.game.$save();
+
+		   //After game win additional variable reset
+
+			if($scope.game.playAgainFlag){
+				$scope.player.redCount = 0 ;
+				$scope.player.redCount = 0 ;
+				$scope.player.redScore = ["","","","",""];
+				$scope.player.blueScore = ["","","","",""] ;
+			    $scope.player.$save();
+			}
+
+	};
+
+	      $scope.abandonGame = function(s){
+      	 if($scope.game.gameStart == true ){
+
+      	 	if(s == "blue"){
+			  	$scope.player.blueTotalScores++;
+			  	$scope.player.$save();
+			  	$scope.game.outcome  = "Blue Team Left the Game  Red Team Wins!";
+			  	$scope.game.gameStart = false ;
+			  	$scope.game.$save();
+      	 	}else if (s == "red") {
+      	 		$scope.player.redTotalScores++;
+			  	$scope.player.$save();
+			  	$scope.game.outcome = "Red Team Left the Game. Blue Team Wins!";
+			  	$scope.game.gameStart = false ;			  	
+			  	$scope.game.$save();
+      	 	}
+
+      	 }
+
+      };
+
+
 });
+
+
+
+
 
 // User Log in Users Controller
 app.controller("UsersController",  function($scope, $firebase){
@@ -300,7 +350,7 @@ app.controller("UsersController",  function($scope, $firebase){
       	 		fb.$update('blue', {occupied: false, player: ""});
       	 	}
 
-      	 	$scope.resetDisplay = true ;
+      	 	$scope.unseatedDisplay = true ;
 
 
 
@@ -316,7 +366,7 @@ app.controller("UsersController",  function($scope, $firebase){
       	 		fb.$update('red', {occupied: false, player: ""});
       	 	}
 
-            $scope.resetDisplay = true ; 
+            $scope.unseatedDisplay = true ; 
 
 
 		}
@@ -324,147 +374,23 @@ app.controller("UsersController",  function($scope, $firebase){
       
       };
 
+      //unseated function.
+      $scope.unseated = function(){
 
-      $scope.reset = function(){
-
-      		$scope.resetDisplay = false ;
+      		$scope.unseatedDisplay= false ;
+  
 
       	   if(players.blue.player == $scope.uniId ){
       	   	  fb.$update('blue', {occupied: false, player: ""});
+      	   	  // $scope.abandonGame('blue');
       	    }else if(players.red.player == $scope.uniId ) {
       	   	  fb.$update('red', {occupied: false, player: ""});
+      	   	   // $scope.abandonGame('red');
+
       	   }
 
       	};
 
-
-      	// Play button display function
-
-
-  //     if (players.player1.unid){
-		// 	$scope.uniId = makeId();
-		// 	players.player2.unid = $scope.uniId ;
-		// 	 players.player2 ={userName: "helllo1", email: "", side: "", seated: false};
-		// 	$scope.uniId2 = $scope.players.player2.id ;
-		// players.$save();
-
-  //  }
-
-    
-  //   if ($scope.players.player1 == undefined){
-  //   	$scope.players.player1 = {userName: "helllo1", email: "", side: "", seated: false};
-  //   	$scope.players.$save();
- 	// }
-
-  //    if ($scope.players.player2 == undefined){
-  //   	$scope.players.player2 = {userName: "helllo", email: "", side: "", seated: false};
-  //   	$scope.players.$save();
- 	// }
-
-
-	 //  function makeId(){
-		//     var text = ""
-
-		//     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-		//     for( var i=0; i < 5; i++ )
-		//         text += possible.charAt(Math.floor(Math.random() * possible.length));
-		//     return text;
-  //    }
-
-  //  if($scope.players.player1.id == undefined){
-		// 	//$scope.uniId = makeId();
-		// 	$scope.players.player1.id = makeId()  ;
-		// 	$scope.uniId = $scope.players.player1.id ;
-		// 	$scope.players.$save();
-
-  //  }
-
-
-
-  //  if ($scope.players.player1.id){
-		// 	//$scope.uniId2 = makeId();
-		// 	$scope.players.player2.id = makeId() ;
-		// 	$scope.uniId2 = $scope.players.player2.id ;
-		// 	$scope.players.$save();
-
-  //  }
-
-
-
-
-	//Players profiles variables
-	// $scope.players = getPlayer();
-
- //    $scope.players.redPlayer = {userName: "", email: "", redRegisterFlag: false };
- //    $scope.players.bluePlayer = {userName: "", email: "", blueRegisterFlag: false};
- //    $scope.players.$save();
-
- //    $scope.redUserName = null ;
- //    $scope.redEmail = null  ;
-
- //    $scope.blueUserName = null ;
- //    $scope.blueEmail = null ;
-
-
-
-
-
-
-   
- //   $scope.addPlayer = function(redUserName, redEmail, blueUserName, blueEmail) {
-      
-
-
- //      // Red Player
- //   	    if(redUserName && redEmail && ($scope.players.bluePlayer.blueRegisterFlag == false) ){
- //   	        $scope.players.redPlayer.userName = $scope.redUserName ;
- //   	        $scope.players.redPlayer.email = $scope.redEmail ;
- //   	        $scope.players.redPlayer.id = uniId  ;
- //   	        $scope.players.redPlayer.redRegisterFlag = true ;
- //    		$scope.redUserName = null ;
- //    		$scope.redEmail = null ;
- //    		$scope.players.$save();
- //         }
-	//   // Blue Player
-
- //   	    if(blueUserName && blueEmail && ($scope.players.redPlayer.redRegisterFlag == false) 
- //   	    	){
- //   	        $scope.players.bluePlayer.userName = $scope.blueUserName ;
- //   	        $scope.players.bluePlayer.email = $scope.blueEmail ;
- //   	     	$scope.players.bluePlayer.id = uniId  ;
- //   	        $scope.players.bluePlayer.blueRegisterFlag = true ;
- //    		$scope.blueUserName = null ;
- //    		$scope.blueEmail = null ;
- //    		$scope.players.$save();
- //   	    }
-
-
-
-
-	// };
-
-	// // Unregister user
-
-	// $scope.unregister = function (player) { 
-
-
-	// 	if(player == "red"){
-	// 		$scope.players.redPlayer.userName = null;
- //   	        $scope.players.redPlayer.email = null ;
- //   	        $scope.players.redPlayer.redRegisterFlag = false ;
- //   	        $scope.players.redPlayer.id = null  ;
- //   	        $scope.players.$save();
-
-	// 	}else if(player == "blue"){
-	// 	   	$scope.players.bluePlayer.userName = null ;
- //   	        $scope.players.bluePlayer.email = null ;
- //   	        $scope.players.bluePlayer.blueRegisterFlag = false ;
- //   	        $scope.players.bluePlayer.id = null  ;
- //    		$scope.players.$save();
-
-	// 	}
-
-	// };
 
 
 
