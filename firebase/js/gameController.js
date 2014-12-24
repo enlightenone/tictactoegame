@@ -53,7 +53,7 @@ app.controller("GameController",  function($scope, $firebase){
 			return player;
 		}
 
-	// player related data from Firebase
+	
 	function getPlayers(){
 			var ref = new Firebase('https://sctttapp.firebaseio.com/players')			
 			var players = $firebase(ref).$asObject();
@@ -249,6 +249,12 @@ app.controller("GameController",  function($scope, $firebase){
 
 	};
 
+	// Game start function
+	$scope.gameCommence = function(){ 
+		$scope.game.gameStart = true ;
+		$scope.game.$save();
+	};
+
 });
 
 // User Log in Users Controller
@@ -286,7 +292,9 @@ app.controller("UsersController",  function($scope, $firebase){
       	if(option == 'red'){
       		fb.$update(option, { occupied: true });
       		fb.$update(option, { player: $scope.uniId });
-      	 	
+
+      		
+      		
       	 	if((players.blue.occupied == true) 
       	 		&& (players.blue.player == $scope.uniId)){
       	 		fb.$update('blue', {occupied: false, player: ""});
@@ -295,16 +303,22 @@ app.controller("UsersController",  function($scope, $firebase){
       	 	$scope.resetDisplay = true ;
 
 
+
+
       	}else if (option == 'blue'){
       	    fb.$update(option, { occupied: true });
       		fb.$update(option, { player: $scope.uniId });
-      	 	
+
+      		
+	 	
       	 	if((players.red.occupied == true) 
       	 		&& (players.red.player == $scope.uniId)){
       	 		fb.$update('red', {occupied: false, player: ""});
       	 	}
 
             $scope.resetDisplay = true ; 
+
+
 		}
 
       
@@ -322,6 +336,9 @@ app.controller("UsersController",  function($scope, $firebase){
       	   }
 
       	};
+
+
+      	// Play button display function
 
 
   //     if (players.player1.unid){

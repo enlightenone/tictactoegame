@@ -54,7 +54,7 @@
 
 	  <section>
 	  	<div class="wrapper">
-		  	<table>
+		  	<table ng-if="game.gameStart">
 		  		<tr>
 		  			<td ng-click="gamePlay(0, 1)">{{game.grid[0]}}</td>
 		  			<td ng-click="gamePlay(1, 1)">{{game.grid[1]}}</td>
@@ -84,36 +84,19 @@
 	   
 	    			Reset Display1: {{resetDisplay}}<br>
 	    			<button ng-click="reset()" ng-show="resetDisplay" >Reset</button>
-<!-- 	    		<div ng-show"redRegiField">  
-	    		   <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
-                       <input type="text" ng-model="redUserName" placeholder="Add  Red User Name">
-                   </form>
-                   <br><br>
-              	    <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
-                       <input type="text" ng-model="redEmail" placeholder="Add  Red User Email">
-                   </form>
-                </div>
-                <div ng-show="redLeaveField" style="margin-top: 20px;">
-                	<button type="button" ng-click="unregister('red')">Leave</button>
-                </div> -->
+
+	    	</div>
+	    	<div class="play_game">
+	    			<button class="play_button" ng-click="gameCommence()" ng-show="(players.blue.occupied && players.red.occupied)">
+	    				Play
+	    			</button>
+
 	    	</div>
 	    	<div  style="float: right" >
 	    			<button class="sideoption" ng-click="chooseOption('blue')" ng-class="{sideoption_clicked: players.blue.occupied }" ng-disabled="players.blue.occupied">
 	    				Blue
 	    			</button>
-<!-- 	    		<div ng-show="blueRegiField"> 
-	    		   <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
-                       <input type="text" ng-model="blueUserName" placeholder="Add  Blue User Name">
-                   </form>
-                   <br><br>
-              	    <form ng-submit="addPlayer(redUserName, redEmail, blueUserName, blueEmail)">
-                       <input type="text" ng-model="blueEmail" placeholder="Add  Blue User Email">
-                   </form>
-                </div>
-                <div ng-show="blueLeaveField" style="margin-top: 20px;">
-                	<button type="button" ng-click="unregister('blue')">Leave</button>
-                </div>
-	    	</div> -->
+
 	      </div>
 	  </section>
 	  <footer>
