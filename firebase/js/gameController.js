@@ -257,22 +257,13 @@ app.controller("GameController",  function($scope, $firebase){
 	// Game start function
 	$scope.startGame = function(){ 
 		$scope.game.gameStart = true ;
-
-		// if ($scope.players.blue.occupied && $scope.players.red.occupied){
-		// 	alert($scope.players.blue.occupied);
-		// 	alert($scope.players.red.occupied);
-		// 	$scope.game.buttonHide = true ;
-		// 	$scope.game.$save();
-		// }
-
-		$scope.players.blue.occupied = false;
-		$scope.players.blue.occupied = false;
-        $scope.players.$save();
-		$scope.game.buttonHide = true ;
 		$scope.game.$save();
-		$scope.players.blue.occupied = true;
-		$scope.players.blue.occupied = true;
-        $scope.players.$save();
+
+	    $scope.game.buttonHide = true;
+	    $scope.game.$save();
+	
+
+		
 	};
 
 	// After Win Function
@@ -292,7 +283,8 @@ app.controller("GameController",  function($scope, $firebase){
 				$scope.player.redScore = ["","","","",""];
 				$scope.player.blueScore = ["","","","",""] ;
 			    $scope.player.$save();
-			    $scope.game.playAgainFlag = true ;
+			    // $scope.game.playAgainFlag = false ;
+			    // $scope.game.$save()
 			}
 
 	};
@@ -347,6 +339,7 @@ app.controller("UsersController",  function($scope, $firebase){
       		fb.$update(option, { occupied: true });
       		fb.$update(option, { player: $scope.uniId });
 
+
       		
       		
       	 	if((players.blue.occupied == true) 
@@ -355,7 +348,7 @@ app.controller("UsersController",  function($scope, $firebase){
       	 	}
 
       	 	$scope.unseatedDisplay = true ;
-      	 	$scope.testDisplay = true ;
+    
 
 
 
@@ -370,10 +363,13 @@ app.controller("UsersController",  function($scope, $firebase){
       	 		fb.$update('red', {occupied: false, player: ""});
       	 	}
 
+
             $scope.unseatedDisplay = true ; 
 
 
 		}
+
+
 
       
       };
@@ -398,29 +394,67 @@ app.controller("UsersController",  function($scope, $firebase){
 
 
 	      $scope.abandonGame = function(s){
+	     	var answer = confirm('Steven\'s Tic Tac Toe \n\n\ Are you sure you want to quit the game?');
+
+		     if(answer){
+
+		      	 if($scope.game.gameStart == true ){
+
+		      	 	if(s == "blue"){
+					  	$scope.player.blueTotalScores++; 
+					  	$scope.player.$save();
+					  	$scope.game.outcome  = "Blue Team Left the Game  Red Team Wins!";
+						$scope.resetGrand(); 
+		      	 	}else if (s == "red") {
+		      	 		$scope.player.redTotalScores++;
+					  	$scope.player.$save();
+					  	$scope.game.outcome = "Red Team Left the Game. Blue Team Wins!";
+					  	$scope.resetGrand(); 
+		      	 	}
+
+		      	 }
+
+		      }
+
+          };
 
 
-      	 if($scope.game.gameStart == true ){
+      	  $scope.resetGrand = function( ){
 
-      	 	if(s == "blue"){
-			  	$scope.player.blueTotalScores++; 
-			  	$scope.player.$save();
-			  	$scope.game.outcome  = "Blue Team Left the Game  Red Team Wins!";
-			  	$scope.game.gameStart = false ;
-			  	$scope.game.buttonHide = true ;
-			  	$scope.game.$save();
-      	 	}else if (s == "red") {
-      	 		$scope.player.redTotalScores++;
-			  	$scope.player.$save();
-			  	$scope.game.outcome = "Red Team Left the Game. Blue Team Wins!";
-			  	$scope.game.gameStart = false ;	
-			  	$scope.game.buttonHide = true ;	  	
-			  	$scope.game.$save();
-      	 	}
+			$scope.game.turn = true;
+			$scope.game.grid = ["","","","","","","","",""];
+			$scope.game.colorSwitch.red = true;
+			$scope.game.colorSwitch.blue = false;
+			$scope.game.count = 0;
+			$scope.game.playAgainFlag = false ;
+			$scope.game.gameStart = false ;
+    	    $scope.game.buttonHide = false;
+    	    $scope.game.$save();
 
-      	 }
 
-      };
+			$scope.player.redTeam = ["","","","","",""];
+			$scope.player.blueTeam = ["","","","","",""];
+			$scope.player.redPosition = ["","","","","","","","",""];
+			$scope.player.bluePosition = ["","","","","","","","",""];
+			$scope.player.redCount = 0 ;
+			$scope.player.redCount = 0 ;
+			$scope.player.redScore = ["","","","",""];
+			$scope.player.blueScore = ["","","","",""] ;
+			$scope.player.$save();
+
+
+			$scope.mark = "";
+			$scope.unseatedDisplay = false;
+
+    		fb.$set({
+      			red: {occupied: false, player: "", username: ""},
+      			blue: {occupied: false, player: "", username: ""}
+  					});
+
+    			
+
+
+			};
 
 
 
