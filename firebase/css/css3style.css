@@ -182,45 +182,58 @@ footer {
 .board {
   width: 500px;
   height: 500px;
-  border: 3px solid blue;
   margin: 0 auto;
   position: relative;
   margin-top: 100px; 
 
 
+
+
 }
 
 
 
-.line1, .line2, .line3 .line4{
-	height: 3px;
+.line1, .line2, .line3, .line4{
+	width:0px;
+	height: 2px;
 	background:#2187e7; 
-	width:500px;
+
 
 }
 
 .line1 {
 	
-	transform-origin: 14em 30em;
-
+	 -webkit-transform: translate( 0px, 2px);
+     -webkit-animation:move 1s linear forwards ;
 }
 
 .line2 {
-	transform:rotate(30deg);
-	-moz-transform-origin: 14em 30em;
+
+	-webkit-transform: rotate(90deg) translate(250px, -250px);
+	-webkit-transform-origin: 250px 0px 0px;
+	-webkit-animation:move 1s 1s linear forwards ;
 
 }
 
 .line3 {
-	transform:rotate(30deg);
-	-moz-transform-origin: 14em 30em;
+
+	transform: rotate(270deg) translate(-250px, -250px);
+	-webkit-transform-origin: 250px 0px 0px;
+	-webkit-animation:move 1s 3s linear  forwards  ;
 
 }
 
 .line4 {
-	transform:rotate(30deg);
-	-moz-transform-origin: 14em 30em;
 
+	-webkit-transform: rotate(180deg) translate(0px, 502px);
+	-webkit-transform-origin: 250px 500px 0px;
+	-webkit-animation:move 1s 2s linear forwards  ;
+
+}
+
+@-webkit-keyframes move {
+	from  {width:0px;}
+	to { width:500px; box-shadow:0px 0px 5px 1px rgba(0,198,255,0.5); }
 }
 
 
