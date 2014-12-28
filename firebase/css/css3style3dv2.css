@@ -193,31 +193,40 @@ footer {
   width: 500px;
   height: 500px;
   margin: 0 auto;
-  position: absolute ;
+  position: absolute;
   margin-top: 100px; 
-  -webkit-transform: rotateX(60deg) rotateZ(45deg);
-  -webkit-transform-style: preserve-3d;
 
+  -webkit-transform-style: preserve-3d;
+  -webkit-animation:tilt 2s 4s linear forwards ;
+
+}
+
+@-webkit-keyframes tilt {
+    0%  { -webkit-transform: rotateX(0deg); }
+    50% { -webkit-transform: rotateX(60deg) ; }
+    100% { -webkit-transform: rotateX(60deg) rotateZ(45deg); }
 }
 
 .board side {
 	display:block;
 	position: absolute;
-/*	border: 2px solid blue;*/
+/*	border: 2px solid black;*/
 }
 
 .board .front
  {
 	width: 500px;
 	height: 500px;
-	-webkit-animation:cube 2s 1s linear forwards ;
+	-webkit-animation:cube 2s 6s linear forwards ;
 }
 
 
 .board .back
  {
-	width: 500px;
-	height: 500px;
+	width: 498px;
+	height: 498px;
+	border: 0px solid #2187e7;
+	-webkit-animation:borderback 1s 5s linear forwards ;
 }
 
 
@@ -257,18 +266,19 @@ footer {
 
 .borderline1{
 /*	width:200px;
-	height: 2px;*/
-/*	background:black; */
-	-webkit-transform: rotate(0deg) translate( 0px, 0px);
-	-webkit-animation:borderline 2s 1s linear forwards ;
+	height: 3px;
+	background: blue; */
+	-webkit-transform: rotate(180deg) translate( 200px, -4px);
+	-webkit-transform-origin: 200px 0px 0px;
+	-webkit-animation:borderline 2s 6s  linear forwards ;
 }
 
 .borderline2{
 /*	width:200px;
-	height: 4px;
-	background:#2187e7; */
+	height: 3px;
+	background:red; */
 	-webkit-transform: rotate(0deg)  translate( 0px, 500px);
-	-webkit-animation:borderline 2s 1s linear forwards ;
+	-webkit-animation:borderline 2s 6s  linear forwards ;
 }
 
 
@@ -276,17 +286,19 @@ footer {
 /*	width:200px;
 	height: 3px;
 	background:red; */
-	-webkit-transform: rotate(90deg) translate( 99px, 100px);
-	-webkit-animation:borderline 2s 1s linear forwards ;
+	-webkit-transform: rotate(90deg) translate( -5px, 0px);
+	-webkit-transform-origin: 0px 0px 0px;
+	-webkit-animation:borderline 2s 6s  linear forwards ;
 
 }
 
 .borderline4{
 /*	width:200px;
-	height: 3px;
-	background:#2187e7; */
-	-webkit-transform: rotate(90deg) translate( 99px, -400px);
-	-webkit-animation:borderline 2s 1s linear forwards ;
+	height: 3px;	
+	background:red; */
+	-webkit-transform: rotate(270deg) translate( -105px, 400px);
+	-webkit-transform-origin: 97px 0px 0px;
+	-webkit-animation:borderline 2s 6s  linear forwards ;
 }
 
 
@@ -297,8 +309,12 @@ footer {
 
 @-webkit-keyframes borderline {
 	from  { width: 0px;}
-	to { width:200px; box-shadow:0px 0px 5px 1px rgba(0,198,255,0.5);
-		}
+	to { width:200px; box-shadow:0px 0px 5px 1px rgba(0,198,255,0.5);}
+}
+
+@-webkit-keyframes borderback {
+	from  { border: 0px solid #2187e7; }
+	to { border: 2px solid #2187e7; box-shadow:0px 0px 5px 1px rgba(0,198,255,0.5);}
 }
 
 
@@ -365,6 +381,9 @@ footer {
 
 }
 
+
+
+
 @-webkit-keyframes move {
 	from  {width:0px;}
 	to { width:500px; box-shadow:0px 0px 5px 1px rgba(0,198,255,0.5); }
@@ -391,16 +410,16 @@ footer {
 
 	-webkit-transform: translate(20px, 170px);
 	-moz-transform: translate(20px, 170px);
-	-webkit-animation:innerline 1s 1s linear forwards ;
-	-moz-animation:innerline 1s 1s linear forwards ;
+	-webkit-animation:innerline 1s 8s linear forwards ;
+	-moz-animation:innerline 1s 8s linear forwards ;
 }
 
 .innerline2 {
 
 	-webkit-transform: rotate(180deg)  translate(-20px, -330px);
 	-moz-transform:  rotate(180deg)  translate(-20px, -330px);
-	-webkit-animation:innerline 1s 2s linear forwards ;
-	-moz-animation:innerline 1s 2s linear forwards ;
+	-webkit-animation:innerline 1s 9s linear forwards ;
+	-moz-animation:innerline 1s 9s linear forwards ;
 
 }
 
@@ -410,8 +429,8 @@ footer {
 	-moz-transform: rotate(90deg) translate( 240px, 61px);
 	-webkit-transform-origin: 230px 0px 0px;
 	-moz-transform-origin: 230px 0px 0px;
-	-webkit-animation:innerline 1s 1s linear forwards ;
-	-moz-animation:innerline 1s 1s linear forwards ;
+	-webkit-animation:innerline 1s 8s linear forwards ;
+	-moz-animation:innerline 1s 8s linear forwards ;
 }
 
 .innerline4 {
@@ -420,8 +439,8 @@ footer {
 	-moz-transform: rotate(270deg) translate( -239px, 92px);
 	-webkit-transform-origin: 230px 0px 0px;
 	-moz-transform-origin: 230px 0px 0px;
-	-webkit-animation:innerline 1s 2s linear forwards ;
-	-moz-animation:innerline 1s 2s linear forwards ;
+	-webkit-animation:innerline 1s 9s linear forwards ;
+	-moz-animation:innerline 1s 9s linear forwards ;
 
 }
 
