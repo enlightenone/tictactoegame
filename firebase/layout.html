@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html ng-app="tttApp">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Tic Tac Toe Project</title>
+
+		<link rel="stylesheet" href="css/normalize.css">
+		<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/layout.css">
+		<link rel="stylesheet" href="css/layout2.css">
+
+		<script src="js/angular.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/gameController.js"></script>
+
+	</head>
+
+	<body ng-controller="GameController">
+		hello
+	  <header>
+	  	<div  id="score_section" class="wrapper" >
+	  		<div id="redteam" >	
+	  			<div class="topRedContent">  
+	  				<span class="redpointcircle"></span>
+	  				<span class="redpointcircle"></span>
+	  				<span class="redpointcircle"></span>
+	  				<span id="redscore">0</span>
+	  			</div>			
+	  	    </div>
+
+	  		<div id="blueteam">
+	  			<div class="topBlueContent">  
+
+	  				<span id="bluescore">0</span>
+	  				<span class="bluepointcircle"></span>
+	  				<span class="bluepointcircle"></span>
+	  				<span class="bluepointcircle"></span>
+	
+	  			</div>	
+	  		</div>
+	  		<div class="clear"></div>
+	  	</div>
+	  	<div id="message" class="wrapper">
+	  		RESULT MESSAGE
+	  		<div class="clear"></div>
+	  	</div>
+	  </header>
+
+	  <section class="wrapper">
+	  	 <div class="texteffect" style="display: none;">
+	  	 TIC TAC TOE
+	  	</div>
+
+	  	<div class="gridcontainer" >
+
+		  	<div class="board" >
+
+			  	<side class="front">
+			  		<div class="line1">
+			  		</div>
+			  		<div class="line2">
+			  		</div>
+			  		<div class="line3">
+			  		</div>
+			  		<div class="line4">
+			  		</div>
+
+			  		<div class="innerline1">
+			  		</div>
+			  		<div class="innerline2">
+			  		</div>
+			  		<div class="innerline3">
+			  		</div>
+			  		<div class="innerline4">
+			  		</div>
+			  	</side>
+			  	<side class="back">
+			  	</side>
+			  	<side class="right">
+			  		<div class="borderline1">
+			  		</div>
+			  	</side>
+			  	<side class="left">
+	
+			  		<div class="borderline2">
+			  		</div>
+
+			  	</side>
+			  	<side class="top">
+
+				  	<div class="borderline3">
+			  		</div>
+			  	</side>
+			  	<side class="bottom">
+			  		<div class="borderline4">
+			  		</div>
+	
+			  	</side>
+
+		  	</div>
+
+
+	  	</div>
+
+	  </section>
+	  <footer>
+	  	<div id="footer_display" class="wrappper">
+	  		
+	  		<button class="redinput">
+	  			Red
+	  		</button>
+	  		<div style="width: 240px; height: 200px; float: left; margin: 0 auto;">
+	  		<button class="startbutton">
+	  			Start
+	  		</button>
+	  	</div>
+	  		<button class="blueinput">
+	  			Blue
+	  		</button>
+
+	  	<div>
+	  </footer>
+	</body>
+</html>
