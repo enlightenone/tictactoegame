@@ -11,6 +11,7 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.game.playAgainFlag = false;
 	$scope.game.gameStart = false ;
     $scope.game.buttonHide = false;
+    $scope.game.playButtonFlag = false;
     $scope.game.leaveButtonFlag = false ;
 	$scope.game.$save();
 
@@ -257,6 +258,9 @@ app.controller("GameController",  function($scope, $firebase){
 	};
 	// Game start function
 	$scope.startGame = function(){ 
+		// $scope.game.buttonHide = false;
+	 //    $scope.game.$save();
+	
 		$scope.game.gameStart = true ;
 		$scope.game.$save();
 
@@ -427,6 +431,11 @@ app.controller("UsersController",  function($scope, $firebase){
 
       	  $scope.resetGrand = function( ){
 
+      	  	fb.$update('blue', { occupied: false });
+      	  	fb.$update('red', { occupied: false });
+      	  	fb.$update('blue', { player: "" });
+      	  	fb.$update('red', { player: "" });
+
 			$scope.game.turn = true;
 			$scope.game.grid = ["","","","","","","","",""];
 			$scope.game.colorSwitch.red = true;
@@ -453,10 +462,10 @@ app.controller("UsersController",  function($scope, $firebase){
 			$scope.mark = "";
 			$scope.unseatedDisplay = false;
 
-    		fb.$set({
-      			red: {occupied: false, player: "", username: ""},
-      			blue: {occupied: false, player: "", username: ""}
-  					});
+    		// fb.$set({
+      // 			red: {occupied: false, player: "", username: ""},
+      // 			blue: {occupied: false, player: "", username: ""}
+  				// 	});
 
     			
 
