@@ -11,6 +11,7 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.game.playAgainFlag = false;
 	$scope.game.gameStart = false ;
     $scope.game.buttonHide = false;
+    $scope.game.leaveButtonFlag = false ;
 	$scope.game.$save();
 
 	// player related variables
@@ -279,7 +280,7 @@ app.controller("GameController",  function($scope, $firebase){
 
 			if($scope.game.playAgainFlag){
 				$scope.player.redCount = 0 ;
-				$scope.player.redCount = 0 ;
+				$scope.player.blueCount = 0 ;
 				$scope.player.redScore = ["","","","",""];
 				$scope.player.blueScore = ["","","","",""] ;
 			    $scope.player.$save();
@@ -347,6 +348,9 @@ app.controller("UsersController",  function($scope, $firebase){
       	 		fb.$update('blue', {occupied: false, player: ""});
       	 	}
 
+      	 	$scope.game.leaveButtonFlag = true ;
+      	 	$scope.game.$save();
+
       	 	$scope.unseatedDisplay = true ;
     
 
@@ -363,7 +367,8 @@ app.controller("UsersController",  function($scope, $firebase){
       	 		fb.$update('red', {occupied: false, player: ""});
       	 	}
 
-
+			$scope.game.leaveButtonFlag = true ;
+      	 	$scope.game.$save();
             $scope.unseatedDisplay = true ; 
 
 
@@ -394,27 +399,28 @@ app.controller("UsersController",  function($scope, $firebase){
 
 
 	      $scope.abandonGame = function(s){
-	     	var answer = confirm('Steven\'s Tic Tac Toe \n\n\ Are you sure you want to quit the game?');
-
-		     if(answer){
+	     	
+		   
 
 		      	 if($scope.game.gameStart == true ){
+		      	 	var answer = confirm('Steven\'s Tic Tac Toe \n\n\ Are you sure you want to quit the game?');
+		      	 	if(answer){
 
-		      	 	if(s == "blue"){
-					  	$scope.player.blueTotalScores++; 
-					  	$scope.player.$save();
-					  	$scope.game.outcome  = "Blue Team Left the Game  Red Team Wins!";
-						$scope.resetGrand(); 
-		      	 	}else if (s == "red") {
-		      	 		$scope.player.redTotalScores++;
-					  	$scope.player.$save();
-					  	$scope.game.outcome = "Red Team Left the Game. Blue Team Wins!";
-					  	$scope.resetGrand(); 
-		      	 	}
+					      	 	if(s == "blue"){
+								  	$scope.player.blueTotalScores++; 
+								  	$scope.player.$save();
+								  	$scope.game.outcome  = "Blue Team Left the Game  Red Team Wins!";
+									$scope.resetGrand(); 
+					      	 	}else if (s == "red") {
+					      	 		$scope.player.redTotalScores++;
+								  	$scope.player.$save();
+								  	$scope.game.outcome = "Red Team Left the Game. Blue Team Wins!";
+								  	$scope.resetGrand(); 
+					      	 	}
 
-		      	 }
+		      	            }
 
-		      }
+		           }
 
           };
 
@@ -428,7 +434,8 @@ app.controller("UsersController",  function($scope, $firebase){
 			$scope.game.count = 0;
 			$scope.game.playAgainFlag = false ;
 			$scope.game.gameStart = false ;
-    	    $scope.game.buttonHide = false;
+    	    $scope.game.buttonHide = true;
+    	    $scope.game.leaveButtonFlag = false ;
     	    $scope.game.$save();
 
 
@@ -437,7 +444,7 @@ app.controller("UsersController",  function($scope, $firebase){
 			$scope.player.redPosition = ["","","","","","","","",""];
 			$scope.player.bluePosition = ["","","","","","","","",""];
 			$scope.player.redCount = 0 ;
-			$scope.player.redCount = 0 ;
+			$scope.player.blueCount = 0 ;
 			$scope.player.redScore = ["","","","",""];
 			$scope.player.blueScore = ["","","","",""] ;
 			$scope.player.$save();

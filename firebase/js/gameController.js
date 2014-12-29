@@ -279,7 +279,7 @@ app.controller("GameController",  function($scope, $firebase){
 
 			if($scope.game.playAgainFlag){
 				$scope.player.redCount = 0 ;
-				$scope.player.redCount = 0 ;
+				$scope.player.blueCount = 0 ;
 				$scope.player.redScore = ["","","","",""];
 				$scope.player.blueScore = ["","","","",""] ;
 			    $scope.player.$save();
@@ -437,7 +437,7 @@ app.controller("UsersController",  function($scope, $firebase){
 			$scope.player.redPosition = ["","","","","","","","",""];
 			$scope.player.bluePosition = ["","","","","","","","",""];
 			$scope.player.redCount = 0 ;
-			$scope.player.redCount = 0 ;
+			$scope.player.blueCount = 0 ;
 			$scope.player.redScore = ["","","","",""];
 			$scope.player.blueScore = ["","","","",""] ;
 			$scope.player.$save();

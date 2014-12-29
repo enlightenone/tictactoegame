@@ -53,7 +53,7 @@
 	  		<div class="clear"></div>
 	  	</div>
 	  	<div id="message" class="wrapper">
-	  		{{outcome}} Message
+	  		{{game.outcome}}
 	  		<div class="clear"></div>
 	  	</div>
 	  </header>
@@ -139,13 +139,6 @@
 		  	</div>
 
 	  	</div>
-
-
-
-
-
-
-
 	    </div>
 	  </section>
 	  <footer>
@@ -181,7 +174,7 @@
 	      </div>
 	      <div class="clear"></div>
 	      <div class="wrapper">
-	      <button class="quitbutton" ng-click="unseated()" >Leave</button>
+	      <button class="quitbutton" ng-click="unseated()" ng-show="(unseatedDisplay && game.leaveButtonFlag)">Leave</button>
 	      <div class="clear"></div>
 	  	  </div>
 
