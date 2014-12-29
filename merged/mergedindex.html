@@ -28,6 +28,8 @@
 
 	<body ng-controller="GameController">
 	  <header>
+	  	<div style="width: 800px; height:50px; border: 3px solid black;">
+	  	</div>
 	  	<div  id="score_section" class="wrapper" >
 	  		<div class="redteam" ng-class="{redhightlight: game.colorSwitch.red }">	
 	  			<div class="topRedContent">  
@@ -59,7 +61,8 @@
 	  <section>
 	  	<div class="wrapper">
 		  	 <div class="texteffect" ng-hide="game.gameStart">
-		  	 TIC TAC TOE
+		  	   TIC TAC<br>
+		  	   TOE
 
 		  	</div>
 	<div class="gridcontainer" ng-if="game.gameStart">
@@ -177,7 +180,7 @@
 
 	      </div>
 	      <div class="clear"></div>
-	      <div class="wrapper" style="border: 3px solid yellow; margin: 0 auto;">
+	      <div class="wrapper">
 	      <button class="quitbutton" ng-click="unseated()" >Leave</button>
 	      <div class="clear"></div>
 	  	  </div>

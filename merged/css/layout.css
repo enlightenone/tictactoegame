@@ -28,15 +28,15 @@
 
 @-webkit-keyframes tilt {
     0%  { -webkit-transform: rotateX(0deg); }
-    50% { -webkit-transform: rotateX(60deg) ; }
-    100% { -webkit-transform: rotateX(60deg) rotateZ(45deg); }
+    50% { -webkit-transform: rotateX(65deg) ; }
+    100% { -webkit-transform: rotateX(65deg) rotateZ(45deg); }
 }
 
 
 @-moz-keyframes tilt {
     0%  { -moz-transform: rotateX(0deg); }
-    50% { -moz-transform: rotateX(60deg) ; }
-    100% { -moz-transform: rotateX(60deg) rotateZ(45deg); }
+    50% { -moz-transform: rotateX(65deg) ; }
+    100% { -moz-transform: rotateX(65deg) rotateZ(45deg); }
 }
 
 
