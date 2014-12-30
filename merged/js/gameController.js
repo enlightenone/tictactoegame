@@ -262,10 +262,11 @@ app.controller("GameController",  function($scope, $firebase){
 	 //    $scope.game.$save();
 	
 		$scope.game.gameStart = true ;
+		$scope.game.playButtonFlag = false;
 		$scope.game.$save();
 
-	    $scope.game.buttonHide = true;
-	    $scope.game.$save();
+	    // $scope.game.buttonHide = true;
+	    // $scope.game.$save();
 	
 
 		
@@ -277,7 +278,8 @@ app.controller("GameController",  function($scope, $firebase){
 		  $scope.game.playAgainFlag = true;
 		  $scope.game.$save();
 		  $scope.game.gameStart = false ;
-		  $scope.game.buttonHide = false ;
+		  // $scope.game.buttonHide = false ;
+		  $scope.game.playButtonFlag = true;
 		  $scope.game.$save();
 
 		   //After game win additional variable reset
@@ -352,11 +354,12 @@ app.controller("UsersController",  function($scope, $firebase){
       	 		fb.$update('blue', {occupied: false, player: ""});
       	 	}
 
+
       	 	$scope.game.leaveButtonFlag = true ;
       	 	$scope.game.$save();
 
       	 	$scope.unseatedDisplay = true ;
-    
+ 
 
 
 
@@ -373,11 +376,14 @@ app.controller("UsersController",  function($scope, $firebase){
 
 			$scope.game.leaveButtonFlag = true ;
       	 	$scope.game.$save();
-            $scope.unseatedDisplay = true ; 
+            $scope.unseatedDisplay = true ;
 
 
 		}
 
+		    $scope.game.playButtonFlag = true;
+      	 	$scope.game.$save();
+					
 
 
       
@@ -444,6 +450,7 @@ app.controller("UsersController",  function($scope, $firebase){
 			$scope.game.playAgainFlag = false ;
 			$scope.game.gameStart = false ;
     	    $scope.game.buttonHide = true;
+    	    $scope.game.playButtonFlag = false;
     	    $scope.game.leaveButtonFlag = false ;
     	    $scope.game.$save();
 

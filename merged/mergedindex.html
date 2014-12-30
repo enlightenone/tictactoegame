@@ -161,7 +161,7 @@
 
 	    	</div>
 	    	<div class="play_game" >
-	    			<button class="startbutton" ng-click="startGame()" ng-show="(players.blue.occupied && players.red.occupied)" ng-hide="game.buttonHide">
+	    			<button class="startbutton" ng-click="startGame()" ng-show="(players.blue.occupied && players.red.occupied && game.playButtonFlag)">
 						<span ng-hide="game.playAgainFlag">Play</span>
 						<span ng-show="game.playAgainFlag">Play Again?</span>
 	    			</button>
