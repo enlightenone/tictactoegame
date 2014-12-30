@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html ng-app="tttApp">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Tic Tac Toe Project</title>
+
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<![endif]-->
+
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js/angular.min.js"></script>
+		<script src="js/main.js"></script>
+
+	</head>
+
+	<body ng-controller="GameController">
+	  <header>
+	  	<div  class="wrapper">
+	  		<div id="redteam"><span  ng-class="{redhightlight: red}">Red Team</span>
+		  		<div>
+		  		 <span class="redscore" ng-class="{redscore1: redScore[0]}"></span>
+		  		 <span class="redscore" ng-class="{redscore1: redScore[1]}"></span>
+		  		 <span class="redscore" ng-class="{redscore1: redScore[2]}"></span>
+		  		</div>
+	  	    </div>
+	  		<div id="outcome">{{outcome}}</div>
+	  		<di id="blueteam"><span ng-class="{bluehightlight: blue}">Blue Team</span>
+		  		<div>
+		  		 <span class="bluescore" ng-class="{bluescore1: blueScore[0]}"></span>
+		  		 <span class="bluescore" ng-class="{bluescore1: blueScore[1]}"></span>
+		  		 <span class="bluescore"ng-class="{bluescore1: blueScore[2]}"></span>
+		  		</div>
+
+	  		</div>
+
+	  		<div class="clear"></div>
+	  	</div>
+	  </header>
+
+	  <section>
+	  	<div class="wrapper">
+		  	<table>
+		  		<tr>
+		  			<td ng-click="gamePlay(0, 1)">{{grid[0]}}</td>
+		  			<td ng-click="gamePlay(1, 1)">{{grid[1]}}</td>
+		  			<td ng-click="gamePlay(2, 1)">{{grid[2]}}</td>
+		  		</tr>
+		  		<tr>
+		  			<td ng-click="gamePlay(3, 2)">{{grid[3]}}</td>
+		  			<td ng-click="gamePlay(4, 2)">{{grid[4]}}</td>
+		  			<td ng-click="gamePlay(5, 2)">{{grid[5]}}</td>
+		  		</tr>
+		  		<tr>
+		  			<td ng-click="gamePlay(6, 3)">{{grid[6]}}</td>
+		  			<td ng-click="gamePlay(7, 3)">{{grid[7]}}</td>
+		  			<td ng-click="gamePlay(8, 3)">{{grid[8]}}</td>
+		  		</tr>
+		  	</table>
+	    </div>
+	  </section>
+	  <footer>
+	  	<div id="footer_display" class="wrappper">
+	  		Main Grid Array:{{ grid }}
+	  		<br>
+	  		Red Array(Sorted): {{redTeam}}
+	  		<br>
+	  		Red Array: {{redPosition}}
+	  		<br>
+	  		Blue Array(Sorted): {{blueTeam}}
+	  		<br>
+			Blue Array: {{bluePosition}}
+	  		<br>
+	  		<br>
+	  		Red Joint String: {{redJointStr}}
+	  		<br>
+	  		<br>
+	  		Blue Joint String: {{blueJointStr}}
+	  		<br>
+	  		<br>
+	  		Red Position Array: {{redPositionArray}}
+	  		<br>
+	  		<br>
+	  		Blue Position Array: {{bluePositionArray}}
+	  		<br>
+	  		<br>
+	  		Count: {{count}}
+	  		<br>
+	  		<br>
+
+	  		<br>
+	  		<br>
+	  		Red Score Array: {{redScore}}
+	  		<br>
+	  		Red Score Count: {{redCount}}
+	  		<br>
+	  		<br>
+	  		Blue Score Array: {{blueScore}}
+	  		<br>
+	  		Blue Score Count: {{blueCount}}
+	  		<br>
+	  		<br>
+	  		Red Outcome: {{redOutcome}}
+	  		<br>
+	  		Blue Outcome: {{blueOutcome}}
+
+	  	<div>
+	  </footer>
+	</body>
+</html>

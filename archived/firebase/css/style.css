@@ -5,33 +5,44 @@
 }
 
 .wrapper {
-	width: 800px;
+	width: 50%;
 	margin: 0 auto;
-}
-
-body {
-	background: url(../img/tron_background3.jpg);
-	background-size: 100% 100%;
-    background-repeat: no-repeat;
-    font-family:'Audiowide', Arial;
 }
 
 
 /*Header Section*/
 header {
 	height: 200px;
-	padding-top: 50px;
+	border: 3px solid black;
 }
 
-
-#score_section {
-	position: relative;
-	height: 125px;
+#redteam{
+	height: 200px;
+	width: 200px;
+	border: 3px solid blue;
+	text-align: center;
+	line-height: 50px;
+	float: left;
 }
 
+#outcome{
+	height: 200px;
+	width: 200px;
+	border: 3px solid green;
+	text-align: center;
+	line-height: 100px;
+	float: left;
+}
 
+#blueteam{
+	height: 200px;
+	width: 200px;
+	border: 3px solid black;
+	text-align: center;
+	line-height: 50px;
+	float: left;
 
-
+}
 
 .redhightlight{
 	color: red;
@@ -45,7 +56,14 @@ header {
 
 /*score circle*/
 
+.bluescore, .redscore {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	border: 2px solid black;
+	display: inline-block;
 
+}
 .redscore1, .redscore2, .redscore3 { 
 	background-color: red;
 }
@@ -57,7 +75,7 @@ header {
 /*Middle Section*/
 section {
 	height: 700px;
-
+	border: 3px solid red;
 }
 
 table {
@@ -76,29 +94,30 @@ table tr {
 table tr td {
 	width: 150px;
 	height: 150px;
-/*	border: 3px solid black;*/
+	border: 3px solid black;
 	text-align: center;
 	line-height: 150px;
-	font-size: 80px;
+	font-size: 50px;
 	font-weight: bolder;
-	color: #00CAFC;
 }
 
 
 /*Footer Section*/
 
 footer {
-	height: 350px;
+	height: 100px;
+	border: 3px solid yellow;
 }
 
 #footer_display{
-/*   border: 3px solid black;*/
+   border: 3px solid black;
 
 }
 
 /*Register Box*/
 #register_box{
 
+	border:4px solid blue; 
 	height: 250px;
 	margin-top: 30px;
 	padding: 15px;
@@ -133,10 +152,12 @@ footer {
 
 
 .play_game {
-	 width: 260px; 
-	 height: 200px; 
-	 float: left; 
-	 margin: 0 auto;
+ width: 450px;
+ height: 300px;
+ float: left;
+ text-align: center;
+
+
 }
 
 .play_button{

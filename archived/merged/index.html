@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html ng-app="tttApp">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Tic Tac Toe Project</title>
+
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<![endif]-->
+
+		<link rel="stylesheet" href="css/normalize.css">
+		<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/layout2.css">
+		<script src="js/angular.min.js"></script>
+		<!-- Firebase -->
+		<script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+		<!-- AngularFire -->
+		<script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/gameController.js"></script>
+
+	</head>
+
+	<body ng-controller="GameController">
+	  <header>
+	  	<div  class="wrapper">
+	  		<div id="redteam">	  			
+	  			<span  ng-class="{redhightlight: game.colorSwitch.red }">Red Team</span><br>
+	  			<span>{{players.redPlayer.userName}}</span><br>
+		  		<span>Red Total Scores: {{player.redTotalScores}}</span>
+		  		<div>
+		  		 <span class="redscore" ng-class="{redscore1: player.redScore[0]}"></span>
+		  		 <span class="redscore" ng-class="{redscore1: player.redScore[1]}"></span>
+		  		 <span class="redscore" ng-class="{redscore1: player.redScore[2]}"></span>
+		  		</div>
+	  	    </div>
+	  		<di id="blueteam">
+	  			<span ng-class="{bluehightlight: game.colorSwitch.blue}">Blue Team</span><br>
+	  			<span>{{players.bluePlayer.userName}}</span><br>
+	  			<span>Blue Total Scores: {{player.blueTotalScores}}</span>
+	  			<div>
+		  		 <span class="bluescore" ng-class="{bluescore1: player.blueScore[0]}"></span>
+		  		 <span class="bluescore" ng-class="{bluescore1: player.blueScore[1]}"></span>
+		  		 <span class="bluescore"ng-class="{bluescore1: player.blueScore[2]}"></span>
+		  		</div>
+
+	  		</div>
+
+	  		<div class="clear"></div>
+	  	</div>
+	  </header>
+
+	  <section>
+	  	<div class="wrapper">
+		  	<table ng-if="game.gameStart">
+		  		<tr>
+		  			<td ng-click="gamePlay(0, 1)">{{game.grid[0]}}</td>
+		  			<td ng-click="gamePlay(1, 1)">{{game.grid[1]}}</td>
+		  			<td ng-click="gamePlay(2, 1)">{{game.grid[2]}}</td>
+		  		</tr>
+		  		<tr>
+		  			<td ng-click="gamePlay(3, 2)">{{game.grid[3]}}</td>
+		  			<td ng-click="gamePlay(4, 2)">{{game.grid[4]}}</td>
+		  			<td ng-click="gamePlay(5, 2)">{{game.grid[5]}}</td>
+		  		</tr>
+		  		<tr>
+		  			<td ng-click="gamePlay(6, 3)">{{game.grid[6]}}</td>
+		  			<td ng-click="gamePlay(7, 3)">{{game.grid[7]}}</td>
+		  			<td ng-click="gamePlay(8, 3)">{{game.grid[8]}}</td>
+		  		</tr>
+		  	</table>
+	    </div>
+	    <div id="register_box" class="wrapper" ng-controller="UsersController as users">
+	    	<div>
+	    		Unique Id: {{uniId }}<br>
+	    	</div>
+	    	<div style="float: left">
+	    			<button class="sideoption" ng-click="chooseOption('red')" ng-class="{sideoption_clicked: players.red.occupied }" ng-disabled="players.red.occupied">
+	    				Red
+	    			</button>
+	    			<br>
+	   				
+	    			Unseated Function Display: {{unseatedDisplay}}<br>
+	    			PlayAgainFlag Flag:{{game.playAgainFlag}}<br>
+	    			GameStart: {{game.gameStart}}<br>
+
+	    			<button ng-click="unseated()" ng-show="unseatedDisplay" >Leave</button>
+
+	    	</div>
+	    	<div class="play_game" >
+	    			<button class="play_button" ng-click="startGame()" ng-show="(players.blue.occupied && players.red.occupied)" ng-hide="game.buttonHide">
+						<span ng-hide="game.playAgainFlag">Play</span>
+						<span ng-show="game.playAgainFlag">Play Again?</span>
+	    			</button>
+	    			<br>
+
+
+
+	    	</div>
+	    	<div  style="float: right" >
+	    			<button class="sideoption" ng-click="chooseOption('blue')" ng-class="{sideoption_clicked: players.blue.occupied }" ng-disabled="players.blue.occupied">
+	    				Blue
+	    			</button>
+
+	      </div>
+	  </section>
+	  <footer>
+	  	<div id="footer_display" class="wrappper">
+	  		Main Grid Array:{{ grid }}
+	  		<br>
+	  		Red Array(Sorted): {{player.redTeam}}
+	  		<br>
+	  		Red Array: {{player.redPosition}}
+	  		<br>
+	  		Blue Array(Sorted): {{player.blueTeam}}
+	  		<br>
+			Blue Array: {{player.bluePosition}}
+	  		<br>
+	  		<br>
+	  		Red Joint String: {{redJointStr}}
+	  		<br>
+	  		<br>
+	  		Blue Joint String: {{blueJointStr}}
+	  		<br>
+	  		<br>
+	  		Red Position Array: {{redPositionArray}}
+	  		<br>
+	  		<br>
+	  		Blue Position Array: {{bluePositionArray}}
+	  		<br>
+	  		<br>
+	  		Count: {{game.count}}
+	  		<br>
+	  		<br>
+
+	  		<br>
+	  		<br>
+	  		Red Score Array: {{player.redScore}}
+	  		<br>
+	  		Red Score Count: {{player.redCount}}
+	  		<br>
+	  		<br>
+	  		Blue Score Array: {{player.blueScore}}
+	  		<br>
+	  		Blue Score Count: {{player.blueCount}}
+	  		<br>
+	  		<br>
+	  		Red Outcome: {{redOutcome}}
+	  		<br>
+	  		Blue Outcome: {{blueOutcome}}
+	  		<br>
+	  		<br>
+	  		Grid Firebase Content:{{game.grid}}
+	  		<br>
+	  		<br>
+	  		Color Switch Red: {{game.colorSwitch.red}}
+	  		<br>
+	  		Color Switch Blue: {{game.colorSwitch.blue}}
+	  		<br>
+	  		<br>
+
+
+
+
+
+	  	<div>
+	  </footer>
+	</body>
+</html>
