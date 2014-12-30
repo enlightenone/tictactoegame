@@ -76,6 +76,7 @@ app.controller("GameController",  function($scope, $firebase){
 
 	$scope.gamePlay = function(g, p){
             $scope.game.count++;
+            $scope.game.outcome = "" ;
             $scope.game.$save();
             
 
@@ -276,6 +277,9 @@ app.controller("GameController",  function($scope, $firebase){
 		$scope.game.gameStart = true ;
 		$scope.game.playButtonFlag = false;
 		$scope.game.initiate = true ;
+		$scope.game.outcome = "";
+		$scope.game.redWinGame = false;
+        $scope.game.blueWinGame = false;	
 		$scope.game.$save();
 
 		
@@ -285,9 +289,9 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.afterWinFunction = function(){
 
 		  $scope.game.playAgainFlag = true;
-		  $scope.game.$save();
 		  $scope.game.gameStart = false ;
 		  $scope.game.playButtonFlag = true;
+		  $scope.game.outcome ="" ;
 		  $scope.game.$save();
 
 		   //After game win additional variable reset
