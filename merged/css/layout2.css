@@ -596,7 +596,45 @@
 
 }
 
-.texteffect {
+.redwin {
+
+
+	text-shadow:0px 0px  8px red ;
+}
+
+.bluewin {
+
+	text-shadow:0px 0px 8px blue ;
+
+}
+
+.draw{
+	text-shadow:0px 0px 8px #00CAFC ;
+}
+
+
+.redWinGame {
+  height: 700px ;
+  padding-top: 200px;
+  font-size: 100px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 80px #00CAFC,0 0 30px FireBrick,0 0 6px DarkRed;
+  color: white;
+}
+
+.blueWinGame {
+  height: 700px ;
+  padding-top: 200px;
+  font-size: 100px;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 80px #00CAFC,0 0 30px FireBrick,0 0 6px DarkRed;
+  color: white;
+}
+
+
+.title {
   padding: 20px;
   font-size: 150px;
   font-family: 'Monoton', cursive;
@@ -604,19 +642,31 @@
   text-transform: uppercase;
   text-shadow: 0 0 80px #00CAFC,0 0 30px FireBrick,0 0 6px DarkRed;
   color: #00CAFC;
-  -webkit-animation:text 3s 1s linear  forwards  ;
-  -moz-animation:text 3s 1s linear  forwards  ;
+
+}
+
+
+.titleanimate {
+  padding: 20px;
+  font-size: 150px;
+  font-family: 'Monoton', cursive;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 80px #00CAFC,0 0 30px FireBrick,0 0 6px DarkRed;
+  color: #00CAFC;
+  -webkit-animation:text 2s 1s linear  forwards  ;
+  -moz-animation:text 1s 1s linear  forwards  ;
 
 }
 
 @-webkit-keyframes text {
 	from  {font-size: 150px;}
-	to {font-size: 0px; }
+	to {font-size: 0px; display: none;}
 }
 
 @-moz-keyframes text {
 	from  {font-size: 150px;}
-	to {font-size: 0px; }
+	to {font-size: 0px; display: none;}
 }
 
 

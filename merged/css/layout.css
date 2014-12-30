@@ -46,7 +46,7 @@
 .board side {
 	display:block;
 	position: absolute;
-/*	border: 2px solid black;*/
+
 }
 
 .board .front
@@ -121,9 +121,7 @@
 
 
 .borderline1{
-/*	width:200px;
-	height: 3px;
-	background: blue; */
+
 	-webkit-transform: rotate(180deg) translate( 200px, -4px);
 	-webkit-transform-origin: 200px 0px 0px;
 	-webkit-animation:borderline 2s 6s  linear forwards ;
@@ -134,9 +132,7 @@
 }
 
 .borderline2{
-/*	width:200px;
-	height: 3px;
-	background:red; */
+
 	-webkit-transform: rotate(0deg)  translate( 0px, 500px);
 	-webkit-animation:borderline 2s 6s  linear forwards ;
 
@@ -146,9 +142,6 @@
 
 
 .borderline3{
-/*	width:200px;
-	height: 3px;
-	background:red; */
 	-webkit-transform: rotate(90deg) translate( -5px, 0px);
 	-webkit-transform-origin: 0px 0px 0px;
 	-webkit-animation:borderline 2s 6s  linear forwards ;
@@ -218,23 +211,23 @@
 .line1 {
 	
 	 -webkit-transform: translate( 0px, 2px);
-     -webkit-animation:move 1s linear forwards ;
+     -webkit-animation:move 1s 3s linear forwards ;
 
      /*Mozilla Hack*/
 	 -moz-transform: translate( 0px, 2px);
-     -moz-animation:move 1s linear forwards ;
+     -moz-animation:move 1s 3s linear forwards ;
 }
 
 .line2 {
 
 	-webkit-transform: rotate(90deg) translate(250px, -250px);
 	-webkit-transform-origin: 250px 0px 0px;
-	-webkit-animation:move 1s 1s linear forwards ;
+	-webkit-animation:move 1s 4s linear forwards ;
 
  	/*Mozilla Hack*/
 	-moz-transform: rotate(90deg) translate(250px, -250px);
 	-moz-transform-origin: 250px 0px 0px;
-	-moz-animation:move 1s 1s linear forwards ;
+	-moz-animation:move 1s 4s linear forwards ;
 
 
 }
@@ -243,12 +236,12 @@
 
 	-webkit-transform: rotate(270deg) translate(-250px, -250px);
 	-webkit-transform-origin: 250px 0px 0px;
-	-webkit-animation:move 1s 3s linear  forwards  ;
+	-webkit-animation:move 1s 6s linear  forwards  ;
 
 	/*Mozilla Hack*/
 	-moz-transform: rotate(270deg) translate(-250px, -250px);
 	-moz-transform-origin: 250px 0px 0px;
-	-moz-animation:move 1s 3s linear  forwards  ;
+	-moz-animation:move 1s 6s linear  forwards  ;
 
 }
 
@@ -256,15 +249,14 @@
 
 	-webkit-transform: rotate(180deg) translate(0px, 502px);
 	-webkit-transform-origin: 250px 500px 0px;
-	-webkit-animation:move 1s 2s linear forwards  ;
+	-webkit-animation:move 1s 5s linear forwards  ;
 
 	/*Mozilla Hack*/
 	-moz-transform: rotate(180deg) translate(0px, 502px);
 	-moz-transform-origin: 250px 500px 0px;
-	-moz-animation:move 1s 2s linear forwards  ;
+	-moz-animation:move 1s 5s linear forwards  ;
 
 }
-
 
 
 

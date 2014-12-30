@@ -53,19 +53,25 @@
 	  		<div class="clear"></div>
 	  	</div>
 	  	<div id="message" class="wrapper">
-	  		{{game.outcome}}
+	  		<span ng-class="{redwin: game.redWinFlag, bluewin: game.blueWinFlag, draw: game.drawFlag}">{{game.outcome}}</span>
 	  		<div class="clear"></div>
 	  	</div>
 	  </header>
 
 	  <section>
 	  	<div class="wrapper">
-		  	 <div class="texteffect" ng-hide="game.gameStart">
+		  	 <div class="title" ng-class="{titleanimate: game.initiate}"  >
 		  	   TIC TAC<br>
 		  	   TOE
-
 		  	</div>
-	<div class="gridcontainer" ng-if="game.gameStart">
+	<!-- 	  	 <div class="redWinGame" ng-show="game.redWinGame">
+	               Red Team Won The Game
+		  	</div>
+		  	<div class="blueWingGame" ng-show="game.blueWinGame">
+	               Blue Team Won The Game
+		  	</div>  -->
+
+	<div class="gridcontainer" ng-if="game.gameStart"  >
 
 		  	<div class="board" >
 
