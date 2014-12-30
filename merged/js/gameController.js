@@ -18,6 +18,8 @@ app.controller("GameController",  function($scope, $firebase){
     $scope.game.drawFlag = false;
     $scope.game.redWinGame = false;
     $scope.game.blueWinGame = false;
+    $scope.game.redWinBlueQuit = false;
+    $scope.game.blueWinRedQuit = false;  
 	$scope.game.$save();
 
 	// player related variables
@@ -185,6 +187,8 @@ app.controller("GameController",  function($scope, $firebase){
 	            $scope.game.redWinFlag = true;
                 $scope.game.blueWinFlag = false;
                 $scope.game.drawFlag = false;
+                $scope.game.redWinBlueQuit = false;
+                $scope.game.blueWinRedQuit = false; 
 	        	$scope.game.$save();
 
 	        
@@ -206,6 +210,8 @@ app.controller("GameController",  function($scope, $firebase){
 	            $scope.game.redWinFlag = false;
                 $scope.game.blueWinFlag = true;
                 $scope.game.drawFlag = false;
+                $scope.game.redWinBlueQuit = false;
+                $scope.game.blueWinRedQuit = false; 
 	        	$scope.game.$save();
 	        	
 	        	$scope.player.blueScore[$scope.player.blueCount] = true ;
@@ -279,7 +285,9 @@ app.controller("GameController",  function($scope, $firebase){
 		$scope.game.initiate = true ;
 		$scope.game.outcome = "";
 		$scope.game.redWinGame = false;
-        $scope.game.blueWinGame = false;	
+        $scope.game.blueWinGame = false;
+        $scope.game.blueWinRedQuit = false; 
+        $scope.game.redWinBlueQuit = false; 	
 		$scope.game.$save();
 
 		
@@ -429,12 +437,16 @@ app.controller("UsersController",  function($scope, $firebase){
 					      	 	if(s == "blue"){
 								  	$scope.player.blueTotalScores++; 
 								  	$scope.player.$save();
-								  	$scope.game.outcome  = "Blue Team Left the Game  Red Team Wins!";
+								  	$scope.game.blueWinRedQuit = true; 
+								  	$scope.game.outcome = "";
+								  	$scope.game.$save();
 									$scope.resetGrand(); 
 					      	 	}else if (s == "red") {
 					      	 		$scope.player.redTotalScores++;
 								  	$scope.player.$save();
-								  	$scope.game.outcome = "Red Team Left the Game. Blue Team Wins!";
+								  	$scope.game.redWinBlueQuit = true;
+								  	$scope.game.outcome = "";
+                                    $scope.game.$save();
 								  	$scope.resetGrand(); 
 					      	 	}
 

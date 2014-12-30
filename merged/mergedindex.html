@@ -65,10 +65,16 @@
 		  	   TOE
 		  	</div>
 		  	 <div class="redWinGame" ng-show="game.redWinGame">
-	               Red Team Won The Game
+	               Red Team Won The Game!
 		  	</div>
 		  	<div class="blueWinGame" ng-show="game.blueWinGame">
-	               Blue Team Won The Game
+	               Blue Team Won The Game!
+		  	</div> 
+		  	 <div class="redWinGame" ng-show="game.redWinBlueQuit">
+	               Red Team Left the Game.  Blue Team Wins!
+		  	</div>
+		  	<div class="blueWinGame" ng-show="game.blueWinRedQuit">
+	              Red Team Left the Game.  Blue Team Wins!
 		  	</div> 
 
 	<div class="gridcontainer" ng-if="game.gameStart"  >
