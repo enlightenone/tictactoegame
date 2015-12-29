@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-
 <html ng-app="tttApp">
 	<head>
 		<meta charset="utf-8">
-
 		<title>Tic Tac Toe Project</title>
 
 		<!--[if lt IE 9]>
@@ -24,7 +22,6 @@
 		<script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
 		<script src="js/main.js"></script>
 		<script src="js/gameController.js"></script>
-
 	</head>
 
 	<body ng-controller="GameController">
@@ -41,12 +38,10 @@
 
 	  		<div class="blueteam" ng-class="{bluehightlight: game.colorSwitch.blue}">
 	  			<div class="topBlueContent">  
-
 	  				<span id="bluescore">{{player.blueTotalScores}}</span>
 	  				<span class="bluepointcircle" ng-class="{bluepointcirclehighlight: player.blueScore[2]}"></span>
 	  				<span class="bluepointcircle" ng-class="{bluepointcirclehighlight: player.blueScore[1]}"></span>
 	  				<span class="bluepointcircle" ng-class="{bluepointcirclehighlight: player.blueScore[0]}"></span>
-	
 	  			</div>	
 	  		</div>
 	  		<div class="clear"></div>
@@ -59,94 +54,74 @@
 
 	  <section>
 	  	<div class="wrapper">
-		  	 <div class="title" ng-class="{titleanimate: game.initiate}"  >
+		  	<div class="title" ng-class="{titleanimate: game.initiate}" >
 		  	   TIC TAC<br>
 		  	   TOE
 		  	</div>
-		  	 <div class="redWinGame" ng-show="game.redWinGame">
+		  	<div class="redWinGame" ng-show="game.redWinGame">
 	               Red Team Won The Game!
 		  	</div>
 		  	<div class="blueWinGame" ng-show="game.blueWinGame">
 	               Blue Team Won The Game!
 		  	</div> 
-		  	 <div class="redWinGame" ng-show="game.redWinBlueQuit">
+		  	<div class="redWinGame" ng-show="game.redWinBlueQuit">
 	               Red Team Quits. Blue Team Wins!
 		  	</div>
 		  	<div class="blueWinGame" ng-show="game.blueWinRedQuit">
 	              Red Team Quits. Blue Team Wins!
 		  	</div> 
 
-	<div class="gridcontainer" ng-if="game.gameStart"  >
-
+			<div class="gridcontainer" ng-if="game.gameStart" >
 		  	<div class="board" >
-
-
-
 			  	<side class="front" >
+					  <div class="line1"></div>
+					  <div class="line2"></div>
+					  <div class="line3"></div>
+					  <div class="line4"></div>
+					  <div class="innerline1"></div>
+					  <div class="innerline2"></div>
+					  <div class="innerline3"></div>
+					  <div class="innerline4"></div>
 
-					  		<div class="line1">
-					  		</div>
-	
-					  		<div class="line2">
-					  		</div>
-					  		<div class="line3">
-					  		</div>
-					  		<div class="line4">
-					  		</div>
+				  	<table>
+				  		<tr>
+				  			<td ng-click="gamePlay(0, 1)">{{game.grid[0]}}</td>
+				  			<td ng-click="gamePlay(1, 1)">{{game.grid[1]}}</td>
+				  			<td ng-click="gamePlay(2, 1)">{{game.grid[2]}}</td>
+				  		</tr>
+				  		<tr>
+				  			<td ng-click="gamePlay(3, 2)">{{game.grid[3]}}</td>
+				  			<td ng-click="gamePlay(4, 2)">{{game.grid[4]}}</td>
+				  			<td ng-click="gamePlay(5, 2)">{{game.grid[5]}}</td>
+				  		</tr>
+				  		<tr>
+				  			<td ng-click="gamePlay(6, 3)">{{game.grid[6]}}</td>
+				  			<td ng-click="gamePlay(7, 3)">{{game.grid[7]}}</td>
+				  			<td ng-click="gamePlay(8, 3)">{{game.grid[8]}}</td>
+				  		</tr>
+				  	</table>
+					</side>
 
-					  		<div class="innerline1">
-					  		</div>
-					  		<div class="innerline2">
-					  		</div>
-					  		<div class="innerline3">
-					  		</div>
-					  		<div class="innerline4">
-					  		</div>
-		  	<table>
-		  		<tr>
-		  			<td ng-click="gamePlay(0, 1)">{{game.grid[0]}}</td>
-		  			<td ng-click="gamePlay(1, 1)">{{game.grid[1]}}</td>
-		  			<td ng-click="gamePlay(2, 1)">{{game.grid[2]}}</td>
-		  		</tr>
-		  		<tr>
-		  			<td ng-click="gamePlay(3, 2)">{{game.grid[3]}}</td>
-		  			<td ng-click="gamePlay(4, 2)">{{game.grid[4]}}</td>
-		  			<td ng-click="gamePlay(5, 2)">{{game.grid[5]}}</td>
-		  		</tr>
-		  		<tr>
-		  			<td ng-click="gamePlay(6, 3)">{{game.grid[6]}}</td>
-		  			<td ng-click="gamePlay(7, 3)">{{game.grid[7]}}</td>
-		  			<td ng-click="gamePlay(8, 3)">{{game.grid[8]}}</td>
-		  		</tr>
-		  	</table>
-				</side>
-					  	<side class="back">
-					  	</side>
-					  	<side class="right">
-					  		<div class="borderline1">
-					  		</div>
-					  	</side>
-					  	<side class="left">
-			
-					  		<div class="borderline2">
-					  		</div>
+					<side class="back">
+					</side>
+					<side class="right">
+						<div class="borderline1"></div>
+					</side>
+					<side class="left">
+					  <div class="borderline2"></div>
+					</side>
+					<side class="top">
+						<div class="borderline3"></div>
+					</side>
+					<side class="bottom">
+					  <div class="borderline4"></div>
+          </side>
+		  	</div>  <!-- End of <div class="board" > block -->
+	  	</div> <!--  End of <div class="gridcontainer" ng-if="game.gameStart" > -->
+	  </div>  <!-- End of <div class="wrapper"> -->
+	 </section>
 
-					  	</side>
-					  	<side class="top">
-
-						  	<div class="borderline3">
-					  		</div>
-					  	</side>
-					  	<side class="bottom">
-					  		<div class="borderline4">
-					  		</div>
-			
-					  	</side>
-
-		  	</div>
-	  	</div>
-	    </div>
-	  </section>
+	<!--   Footer block -->
 	  <footer>
 	  	<div id="footer_display" class="wrappper">
 	  	  <div id="register_box" class="wrapper" ng-controller="UsersController as users">
@@ -165,14 +140,15 @@
 	    			<button class="blueinput" ng-click="chooseOption('blue')" ng-class="{blueinput_clicked: players.blue.occupied }" ng-disabled="players.blue.occupied">
 	    				Blue
 	    			</button>
-
 	      </div>
 	      <div class="clear"></div>
 	      <div class="wrapper">
-	      <button class="quitbutton" ng-click="unseated()" ng-show="(unseatedDisplay && game.leaveButtonFlag)">Leave</button>
+	      	<button class="quitbutton" ng-click="unseated()" ng-show="(unseatedDisplay && game.leaveButtonFlag)">	Leave
+	      	</button>
 	      <div class="clear"></div>
 	  	  </div>
 	  	<div>
 	  </footer>
+
 	</body>
 </html>

@@ -25,7 +25,7 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.player.redTotalScores = 0 ;
 	$scope.player.blueTotalScores = 0 ;
 	$scope.player.redCount = 0;
-    $scope.player.blueCount = 0 ;
+  $scope.player.blueCount = 0 ;
 	$scope.player.$save();
 
 
@@ -35,8 +35,8 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.mark = "";
 
 	// blue and red string join
-	 $scope.blueJointStr = "";
-	 $scope.redJointStr = "";
+	$scope.blueJointStr = "";
+	$scope.redJointStr = "";
 
 
 
@@ -68,8 +68,8 @@ app.controller("GameController",  function($scope, $firebase){
 
 
 	$scope.gamePlay = function(g, p){
-            $scope.game.count++;
-            $scope.game.$save();
+    $scope.game.count++;
+    $scope.game.$save();
             
 
     if($scope.game.grid[g] == ""){    // function to disable the space after being chosen.   

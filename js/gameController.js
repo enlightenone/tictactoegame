@@ -32,7 +32,7 @@ app.controller("GameController",  function($scope, $firebase){
 	$scope.player.redTotalScores = 0 ;
 	$scope.player.blueTotalScores = 0 ;
 	$scope.player.redCount = 0;
-    $scope.player.blueCount = 0 ;
+  $scope.player.blueCount = 0 ;
 	$scope.player.$save();
 
 	// players related variables
@@ -152,28 +152,28 @@ app.controller("GameController",  function($scope, $firebase){
 
 		 $scope.outcomeDisplay = function(red, blue){
 		  	if(red){
-	        	$scope.game.outcome = "Red Team Won This Round" ;
-	          $scope.game.redWinFlag = true;
-            $scope.game.blueWinFlag = false;
-            $scope.game.drawFlag = false;
-            $scope.game.redWinBlueQuit = false;
-            $scope.game.blueWinRedQuit = false; 
-	        	$scope.game.$save();
+	        $scope.game.outcome = "Red Team Won This Round" ;
+	        $scope.game.redWinFlag = true;
+          $scope.game.blueWinFlag = false;
+          $scope.game.drawFlag = false;
+          $scope.game.redWinBlueQuit = false;
+          $scope.game.blueWinRedQuit = false; 
+	        $scope.game.$save();
 
-	        	$scope.player.redScore[$scope.player.redCount] = true ;
-	        	$scope.player.$save();
-          	$scope.player.redCount++;
+	        $scope.player.redScore[$scope.player.redCount] = true ;
+	        $scope.player.$save();
+          $scope.player.redCount++;
 
-	        	$scope.reset();
-	        	$scope.gameWinningFunction();
+	        $scope.reset();
+	        $scope.gameWinningFunction();
          } else if (blue){
-	        	$scope.game.outcome = "Blue Team Won This Round";
+	          $scope.game.outcome = "Blue Team Won This Round";
 	          $scope.game.redWinFlag = false;
             $scope.game.blueWinFlag = true;
             $scope.game.drawFlag = false;
             $scope.game.redWinBlueQuit = false;
             $scope.game.blueWinRedQuit = false; 
-	        	$scope.game.$save();
+	          $scope.game.$save();
 	        	
 	        	$scope.player.blueScore[$scope.player.blueCount] = true ;
 	        	$scope.player.$save();
@@ -230,23 +230,19 @@ app.controller("GameController",  function($scope, $firebase){
 	};
 	// Game start function
 	$scope.startGame = function(){ 
-	
 		$scope.game.gameStart = true ;
 		$scope.game.playButtonFlag = false;
 		$scope.game.initiate = true ;
 		$scope.game.outcome = "";
 		$scope.game.redWinGame = false;
-        $scope.game.blueWinGame = false;
-        $scope.game.blueWinRedQuit = false; 
-        $scope.game.redWinBlueQuit = false; 	
+    $scope.game.blueWinGame = false;
+    $scope.game.blueWinRedQuit = false; 
+    $scope.game.redWinBlueQuit = false; 	
 		$scope.game.$save();
-
-		
-	};
+	}; // End of $sope.startGame function
 
 	// After Win Function
 	$scope.afterWinFunction = function(){
-
 		  $scope.game.playAgainFlag = true;
 		  $scope.game.gameStart = false ;
 		  $scope.game.playButtonFlag = true;
@@ -261,9 +257,9 @@ app.controller("GameController",  function($scope, $firebase){
 				$scope.player.redScore = ["","","","",""];
 				$scope.player.blueScore = ["","","","",""] ;
 			    $scope.player.$save();
-			}
-
-	};
+			} // End of if($scope.game.playAgainFlag) conditional statement block
+	}; // End of $scope.afterWinFunction function block
+  
 }); // End of GameController block
 
 // User Log in Users Controller
@@ -337,59 +333,54 @@ app.controller("UsersController",  function($scope, $firebase){
       $scope.abandonGame = function(s){
       	 if($scope.game.gameStart == true) {
 		      	var answer = confirm('Steven\'s Tic Tac Toe \n\n\ Are you sure you want to quit the game?');
-		      	 	if(answer){
-					      if(s == "blue"){
-								  	$scope.player.blueTotalScores++; 
-								  	$scope.player.$save();
-								  	$scope.game.blueWinRedQuit = true; 
-								  	$scope.game.outcome = "";
-								  	$scope.game.$save();
-									  $scope.resetGrand(); 
-					      } else if (s == "red") {
-					      	 	$scope.player.redTotalScores++;
-								  	$scope.player.$save();
-								  	$scope.game.redWinBlueQuit = true;
-								  	$scope.game.outcome = "";
-                    $scope.game.$save();
-								  	$scope.resetGrand(); 
-					      } // End of if (s== "blue") else if conditional statement block
-              } // End of if(answer) conditional statement block
+		      	if(answer){
+					   if(s == "blue"){
+								$scope.player.blueTotalScores++; 
+								$scope.player.$save();
+								$scope.game.blueWinRedQuit = true; 
+								$scope.game.outcome = "";
+								$scope.game.$save();
+								$scope.resetGrand(); 
+					    } else if (s == "red") {
+					      $scope.player.redTotalScores++;
+								$scope.player.$save();
+								$scope.game.redWinBlueQuit = true;
+								$scope.game.outcome = "";
+                $scope.game.$save();
+								$scope.resetGrand(); 
+					    } // End of if (s== "blue") else if conditional statement block
+            } // End of if(answer) conditional statement block
 		     } // End of if($scope.game.gameStart == true) conditonal statement block
-
       }; // End of $scope.abandonGame function block
 
+      $scope.resetGrand = function( ){
+			   $scope.game.turn = true;
+			   $scope.game.grid = ["","","","","","","","",""];
+			   $scope.game.colorSwitch.red = true;
+			   $scope.game.colorSwitch.blue = false;
+			   $scope.game.count = 0;
+			   $scope.game.playAgainFlag = false ;
+			   $scope.game.gameStart = false ;
+    	   $scope.game.playButtonFlag = false;
+    	   $scope.game.leaveButtonFlag = false ;
+    	   $scope.game.$save();
 
-      	  $scope.resetGrand = function( ){
+			   $scope.player.redTeam = ["","","","","",""];
+			   $scope.player.blueTeam = ["","","","","",""];
+			   $scope.player.redPosition = ["","","","","","","","",""];
+			   $scope.player.bluePosition = ["","","","","","","","",""];
+			   $scope.player.redCount = 0 ;
+			   $scope.player.blueCount = 0 ;
+			   $scope.player.redScore = ["","","","",""];
+			   $scope.player.blueScore = ["","","","",""] ;
+			   $scope.player.$save();
 
-			$scope.game.turn = true;
-			$scope.game.grid = ["","","","","","","","",""];
-			$scope.game.colorSwitch.red = true;
-			$scope.game.colorSwitch.blue = false;
-			$scope.game.count = 0;
-			$scope.game.playAgainFlag = false ;
-			$scope.game.gameStart = false ;
-    	$scope.game.playButtonFlag = false;
-    	$scope.game.leaveButtonFlag = false ;
-    	$scope.game.$save();
-
-
-			$scope.player.redTeam = ["","","","","",""];
-			$scope.player.blueTeam = ["","","","","",""];
-			$scope.player.redPosition = ["","","","","","","","",""];
-			$scope.player.bluePosition = ["","","","","","","","",""];
-			$scope.player.redCount = 0 ;
-			$scope.player.blueCount = 0 ;
-			$scope.player.redScore = ["","","","",""];
-			$scope.player.blueScore = ["","","","",""] ;
-			$scope.player.$save();
-
-
-			$scope.mark = "";
-			$scope.unseatedDisplay = false;
+			   $scope.mark = "";
+			   $scope.unseatedDisplay = false;
 
     		fb.$set({
       			red: {occupied: false, player: "", username: ""},
       			blue: {occupied: false, player: "", username: ""}
   					});
-			};
+		}; // End of sresetGrand function block
 }); // End of UsersController Controller block
