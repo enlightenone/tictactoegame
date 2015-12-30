@@ -12,10 +12,9 @@
 body {
 	background: url(../img/tron_background3.jpg);
 	background-size: 100% 100%;
-    background-repeat: no-repeat;
-    font-family:'Audiowide', Arial;
+  background-repeat: no-repeat;
+  font-family:'Audiowide', Arial;
 }
-
 
 /*Header Section*/
 header {
@@ -23,14 +22,10 @@ header {
 	padding-top: 50px;
 }
 
-
 #score_section {
 	position: relative;
 	height: 125px;
 }
-
-
-
 
 
 .redhightlight{
@@ -57,7 +52,6 @@ header {
 /*Middle Section*/
 section {
 	height: 700px;
-
 }
 
 table {
@@ -70,7 +64,6 @@ table {
 table tr {
 	width: 450px;
 	height: 150px
-
 }
 
 table tr td {
@@ -98,12 +91,9 @@ footer {
 
 /*Register Box*/
 #register_box{
-
 	height: 250px;
 	margin-top: 30px;
 	padding: 15px;
-
-
 }
 
 .sideoption{
@@ -118,7 +108,6 @@ footer {
 	color: white;
 }
 
-
 .sideoption_clicked {
 	width: 250px;
 	height: 100px;
@@ -131,7 +120,6 @@ footer {
 	color: #09C7D5;
 }
 
-
 .play_game {
 	 width: 260px; 
 	 height: 200px; 
@@ -140,7 +128,6 @@ footer {
 }
 
 .play_button{
-
 	width: 300px;
 	height: 100px;
 	background-color: #2E31F5 ;
@@ -151,8 +138,6 @@ footer {
 	line-height: 100px;
 	color: white;
 	margin: 0 auto;
-
-
 }
 
 
