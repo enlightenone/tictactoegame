@@ -1,9 +1,9 @@
 app.controller("GameController",  function($scope, $firebase, firebaseFactory){
 	// game related variables
-  firebaseFactory.getObject('game');
-	// $scope.game = getGameGrid();
- //  $scope.player = getPlayer(); // data initialization
- //  $scope.players = getPlayers();
+  
+	$scope.game = firebaseFactory.getObject('game');
+  $scope.player = firebaseFactory.getObject('player');
+  $scope.players = firebaseFactory.getFirebaseRef('players');
 
    $scope.setDefaultValues = function(){
     $scope.game.grid =["","","","","","","","",""];
