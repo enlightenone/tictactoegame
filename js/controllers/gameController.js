@@ -1,5 +1,6 @@
 app.controller("GameController",  function($scope, $firebase, firebaseFactory){
 	// game related variables
+  firebaseFactory.test();
 	$scope.game = getGameGrid();
   $scope.player = getPlayer(); // data initialization
   $scope.players = getPlayers();
