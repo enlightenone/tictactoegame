@@ -75,7 +75,7 @@ table tr {
 
 table tr td {
 	width: 150px;
-	height: 150px;
+	/*height: 150px;*/
 /*	border: 3px solid black;*/
 	text-align: center;
 	line-height: 150px;

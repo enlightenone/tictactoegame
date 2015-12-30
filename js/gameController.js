@@ -1,6 +1,8 @@
 app.controller("GameController",  function($scope, $firebase){
 	// game related variables
 	$scope.game = getGameGrid();
+  $scope.player = getPlayer(); // data initialization
+  $scope.players = getPlayers();
 
    $scope.setDefaultValues = function(){
     $scope.game.grid =["","","","","","","","",""];
@@ -23,7 +25,7 @@ app.controller("GameController",  function($scope, $firebase){
     $scope.game.$save();
 
     // player related variables
-    $scope.player = getPlayer(); // data initialization
+    //$scope.player = getPlayer(); // data initialization
     $scope.player.redScore = ["","","","",""];
     $scope.player.blueScore = ["","","","",""] ;
     $scope.player.redTeam = ["","","","",""];
@@ -37,6 +39,10 @@ app.controller("GameController",  function($scope, $firebase){
     $scope.player.blueCount = 0 ;
     $scope.player.$save();
 
+    $scope.players.$update('red', { occupied: false });
+    $scope.players.$update('red', { player: "" });
+    $scope.players.$update('blue', { occupied: false });
+    $scope.players.$update('blue', { player: "" });
     $scope.mark = "";
 
     // blue and red string join
@@ -44,16 +50,7 @@ app.controller("GameController",  function($scope, $firebase){
     $scope.redJointStr = "";
   }// End of setDefaultValues function
 
-
-var playersobj = getPlayers();
-
-  playersobj.$loaded().then(function(data){
-    var redPlayerOccupied = data.red.occupied;
-    var bluePlayerOccupied = data.blue.occupied;
-    if(!redPlayerOccupied && !bluePlayerOccupied){
-      $scope.setDefaultValues();
-    } // End of if conditional statement
-  }); // End of playersObj.
+ $scope.setDefaultValues();
 
    // Retrieve data from Firebase;
 
@@ -73,8 +70,9 @@ var playersobj = getPlayers();
 
 	
 	function getPlayers(){
-		var ref = new Firebase('https://sctttapp.firebaseio.com/players')		;
-		var players = $firebase(ref).$asObject();
+		var ref = new Firebase('https://sctttapp.firebaseio.com/players');
+    var players = $firebase(ref);
+		//var players = $firebase(ref).$asObject();
 		return players;
 	} // End of getPlayers() function
 
@@ -286,20 +284,20 @@ app.controller("UsersController",  function($scope, $firebase){
      		/*......define database................*/
 
 		 var ref = new Firebase('https://sctttapp.firebaseio.com/players');
-			// var ref2 = new Firebase('https://sctttapp.firebaseio.com/game');
+			//var ref2 = new Firebase('https://sctttapp.firebaseio.com/game');
 		 var fb = $firebase(ref);
-			// var fb2 = $firebase(ref2)	
+			//var fb2 = $firebase(ref2)	
 		
 		 var players = fb.$asObject();
 
-			// var game = fb2.$asObject() ;
+			//var game = fb2.$asObject() ;
           /*........................................*/
 
 		players.$bindTo($scope, 'players');
 
 
 
-		// game.$bindTo($scope, 'game');
+		//game.$bindTo($scope, 'game');
 
       $scope.chooseOption = function(option){
       	if(option == 'red'){
@@ -334,45 +332,42 @@ app.controller("UsersController",  function($scope, $firebase){
 
       //unseated function.
       $scope.unseated = function(){
-        console.log("Mark Id");
-        console.log($scope.uniId);
-     		$scope.unseatedDisplay= false ;
+     		$scope.unseatedDisplay = false ;
       	if(players.blue.player == $scope.uniId ){
-      	   	  fb.$update('blue', {occupied: false, player: ""});
-      	   	  $scope.abandonGame('blue');
+      	   	fb.$update('blue', {occupied: false, player: ""});
+      	   	$scope.abandonGame('blue');
       	 } else if(players.red.player == $scope.uniId ) {
-      	   	  fb.$update('red', {occupied: false, player: ""});
-			         $scope.abandonGame('red');
+      	   	fb.$update('red', {occupied: false, player: ""});
+			      $scope.abandonGame('red');
       	 }
 
-      	}; // End of $scope.unseated function block
+      }; // End of $scope.unseated function block
   
       $scope.abandonGame = function(s){
       	 if($scope.game.gameStart == true) {
 		      	var answer = confirm('Steven\'s Tic Tac Toe \n\n\ Are you sure you want to quit the game?');
 		      	if(answer){
 					   if(s == "blue"){
-                console.log("Blue quited");
-                $scope.player.redTotalScores++;
-								//$scope.player.blueTotalScores++; 
+                $scope.player.redTotalScores = 0;
 								$scope.player.$save();
                 $scope.game.redWinBlueQuit = true;
-								// $scope.game.blueWinRedQuit = true; 
 								$scope.game.outcome = "";
 								$scope.game.$save();
 								$scope.resetGrand(); 
 					    } else if (s == "red") {
-                console.log("Red quited");
-                $scope.player.blueTotalScores++; 
-					      // $scope.player.redTotalScores++;
+                $scope.player.blueTotalScores = 0; 
 								$scope.player.$save();
                 $scope.game.blueWinRedQuit = true; 
-								// $scope.game.redWinBlueQuit = true;
 								$scope.game.outcome = "";
                 $scope.game.$save();
 								$scope.resetGrand(); 
 					    } // End of if (s== "blue") else if conditional statement block
-            } // End of if(answer) conditional statement block
+            } else {
+                $scope.unseatedDisplay = true ;
+                console.log($scope.unseatedDisplay);
+                fb.$update( s, {occupied: true, player: $scope.uniId });
+
+            }// End of if(answer) conditional statement block
 		     } // End of if($scope.game.gameStart == true) conditonal statement block
       }; // End of $scope.abandonGame function block
 
