@@ -1,52 +1,59 @@
 app.controller("GameController",  function($scope, $firebase){
 	// game related variables
 	$scope.game = getGameGrid();
-	$scope.game.grid =["","","","","","","","",""];
-	$scope.game.turn = true ;
-	$scope.game.outcome = "" ;
-	$scope.game.colorSwitch = {red: true, blue: false};
-	$scope.game.count = 0 ;
-	$scope.game.initiate = false ;
-	$scope.game.playAgainFlag = false;
-	$scope.game.gameStart = false ;
-  $scope.game.playButtonFlag = false;
-  $scope.game.leaveButtonFlag = false ;
-  $scope.game.redWinFlag = false;
-  $scope.game.blueWinFlag = false;
-  $scope.game.drawFlag = false;
-  $scope.game.redWinGame = false;
-  $scope.game.blueWinGame = false;
-  $scope.game.redWinBlueQuit = false;
-  $scope.game.blueWinRedQuit = false;  
-	$scope.game.$save();
 
-	// player related variables
-	$scope.player = getPlayer(); // data initialization
-	$scope.player.redScore = ["","","","",""];
-	$scope.player.blueScore = ["","","","",""] ;
-	$scope.player.redTeam = ["","","","",""];
-	$scope.player.blueTeam = ["","","","",""];
-	$scope.player.redPosition = ["","","","","","","","",""];
-	$scope.player.bluePosition = ["","","","","","","","",""];
+   $scope.setDefaultValues = function(){
+    $scope.game.grid =["","","","","","","","",""];
+    $scope.game.turn = true ;
+    $scope.game.outcome = "" ;
+    $scope.game.colorSwitch = {red: true, blue: false};
+    $scope.game.count = 0 ;
+    $scope.game.initiate = false ;
+    $scope.game.playAgainFlag = false;
+    $scope.game.gameStart = false ;
+    $scope.game.playButtonFlag = false;
+    $scope.game.leaveButtonFlag = false ;
+    $scope.game.redWinFlag = false;
+    $scope.game.blueWinFlag = false;
+    $scope.game.drawFlag = false;
+    $scope.game.redWinGame = false;
+    $scope.game.blueWinGame = false;
+    $scope.game.redWinBlueQuit = false;
+    $scope.game.blueWinRedQuit = false;  
+    $scope.game.$save();
 
-	$scope.player.redTotalScores = 0 ;
-	$scope.player.blueTotalScores = 0 ;
-	$scope.player.redCount = 0;
-  $scope.player.blueCount = 0 ;
-	$scope.player.$save();
+    // player related variables
+    $scope.player = getPlayer(); // data initialization
+    $scope.player.redScore = ["","","","",""];
+    $scope.player.blueScore = ["","","","",""] ;
+    $scope.player.redTeam = ["","","","",""];
+    $scope.player.blueTeam = ["","","","",""];
+    $scope.player.redPosition = ["","","","","","","","",""];
+    $scope.player.bluePosition = ["","","","","","","","",""];
 
+    $scope.player.redTotalScores = 0 ;
+    $scope.player.blueTotalScores = 0 ;
+    $scope.player.redCount = 0;
+    $scope.player.blueCount = 0 ;
+    $scope.player.$save();
 
+    $scope.mark = "";
 
-	$scope.mark = "";
-
-	// blue and red string join
-	 $scope.blueJointStr = "";
-	 $scope.redJointStr = "";
-
-  // players related variables
-  $scope.players = getPlayers();
+    // blue and red string join
+    $scope.blueJointStr = "";
+    $scope.redJointStr = "";
+  }// End of setDefaultValues function
 
 
+var playersobj = getPlayers();
+
+  playersobj.$loaded().then(function(data){
+    var redPlayerOccupied = data.red.occupied;
+    var bluePlayerOccupied = data.blue.occupied;
+    if(!redPlayerOccupied && !bluePlayerOccupied){
+      $scope.setDefaultValues();
+    } // End of if conditional statement
+  }); // End of playersObj.
 
    // Retrieve data from Firebase;
 
@@ -66,7 +73,7 @@ app.controller("GameController",  function($scope, $firebase){
 
 	
 	function getPlayers(){
-		var ref = new Firebase('https://sctttapp.firebaseio.com/players')			
+		var ref = new Firebase('https://sctttapp.firebaseio.com/players')		;
 		var players = $firebase(ref).$asObject();
 		return players;
 	} // End of getPlayers() function
@@ -281,12 +288,17 @@ app.controller("UsersController",  function($scope, $firebase){
 		 var ref = new Firebase('https://sctttapp.firebaseio.com/players');
 			// var ref2 = new Firebase('https://sctttapp.firebaseio.com/game');
 		 var fb = $firebase(ref);
-			// var fb2 = $firebase(ref2)				
+			// var fb2 = $firebase(ref2)	
+		
 		 var players = fb.$asObject();
+
 			// var game = fb2.$asObject() ;
           /*........................................*/
 
 		players.$bindTo($scope, 'players');
+
+
+
 		// game.$bindTo($scope, 'game');
 
       $scope.chooseOption = function(option){
