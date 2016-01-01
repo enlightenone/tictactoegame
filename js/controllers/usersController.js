@@ -1,23 +1,10 @@
 // User Log in Users Controller
-app.controller("UsersController",  function($scope, $firebase){
-    function makeId(){
-        var text = ""
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        for( var i=0; i < 5; i++ )
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-        return text;
-     } // ENd of makeId function
+app.controller("UsersController",  function($scope, $firebase, firedbaseFactory, gameFactory){
 
-     $scope.uniId  = makeId();
+
+     $scope.uniId  = gameFactory.makeId();
         /*......define database................*/
-
-     var ref = new Firebase('https://sctttapp.firebaseio.com/players');
-      //var ref2 = new Firebase('https://sctttapp.firebaseio.com/game');
-     var fb = $firebase(ref);
-      //var fb2 = $firebase(ref2) 
-    
-     var players = fb.$asObject();
-
+    var players = firebaseFactory.getObject('players');
       //var game = fb2.$asObject() ;
           /*........................................*/
 

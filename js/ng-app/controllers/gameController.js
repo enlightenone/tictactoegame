@@ -55,27 +55,6 @@ app.controller("GameController",  function($scope, $firebase, firebaseFactory){
 
    // Retrieve data from Firebase;
 
-   // general game related data from Firebase
-	function getGameGrid(){
-		var ref = new Firebase('https://sctttapp.firebaseio.com/game')
-		var game = $firebase(ref).$asObject();
-		return game;
-	} // End of getGameGrid() function
-
-	// player related data from Firebase
-	function getPlayer(){
-		var ref = new Firebase('https://sctttapp.firebaseio.com/player')			
-		var player = $firebase(ref).$asObject();
-		return player;
-	} // End of getPlayer() function
-
-	
-	function getPlayers(){
-		var ref = new Firebase('https://sctttapp.firebaseio.com/players');
-    var players = $firebase(ref);
-		//var players = $firebase(ref).$asObject();
-		return players;
-	} // End of getPlayers() function
 
    $scope.gamePlay = function(g, p){
     $scope.game.count++;
