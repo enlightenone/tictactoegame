@@ -1,25 +1,25 @@
-      <div id="footer_display" class="wrappper">
-        <div id="register_box" class="wrapper" ng-controller="UsersController as users">
-        <div style="float: left">
-            <button class="redinput" ng-click="chooseOption('red')" ng-class="{redinput_clicked: players.red.occupied }" ng-disabled="players.red.occupied">
-              Red
-            </button>
-        </div>
-        <div class="play_game" >
-            <button class="startbutton" ng-click="startGame()" ng-show="(players.blue.occupied && players.red.occupied && game.playButtonFlag)">
-            <span ng-hide="game.playAgainFlag">Play</span>
-            <span ng-show="game.playAgainFlag">Play Again?</span>
-            </button>
-        </div>
-        <div  style="float: right" >
-            <button class="blueinput" ng-click="chooseOption('blue')" ng-class="{blueinput_clicked: players.blue.occupied }" ng-disabled="players.blue.occupied">
-              Blue
-            </button>
-        </div>
-        <div class="clear"></div>
-        <div class="wrapper">
-          <button class="quitbutton" ng-click="unseated()" ng-show="(unseatedDisplay && game.leaveButtonFlag)"> Leave
-          </button>
-        <div class="clear"></div>
-        </div>
-      <div>
+<div id="footer_display" class="wrappper">
+  <div id="register_box" class="wrapper" ng-controller="UsersController as users">
+    <div style="float: left">
+      <button class="redinput" ng-click="chooseOption('red')" ng-class="{redinput_clicked: players.red.occupied }" ng-disabled="players.red.occupied">
+        Red
+      </button>
+    </div>
+    <div class="play_game" >
+      <button class="startbutton" ng-click="startGame()" ng-show="(players.blue.occupied && players.red.occupied && game.playButtonFlag)">
+        <span ng-hide="game.playAgainFlag">Play</span>
+        <span ng-show="game.playAgainFlag">Play Again?</span>
+      </button>
+    </div>
+    <div  style="float: right" >
+      <button class="blueinput" ng-click="chooseOption('blue')" ng-class="{blueinput_clicked: players.blue.occupied }" ng-disabled="players.blue.occupied">
+        Blue
+      </button>
+    </div>
+    <div class="clear"></div>
+    <div class="wrapper">
+      <button class="quitbutton" ng-click="unseated()" ng-show="(unseatedDisplay && game.leaveButtonFlag)"> Leave
+      </button>
+    <div class="clear"></div>
+  </div>
+<div>

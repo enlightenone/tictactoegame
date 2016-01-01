@@ -19,7 +19,6 @@ app.factory('firebaseFactory',function($firebase){
 
 app.factory('gameFactory',function(){
   var factory = {};
-
   factory.makeId = function(){
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -27,6 +26,5 @@ app.factory('gameFactory',function(){
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     return text;
   }; // End of factory.makeId function
-
   return factory;
 });// End of firebas
