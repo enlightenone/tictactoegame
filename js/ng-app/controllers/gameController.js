@@ -1,4 +1,4 @@
-app.controller("GameController",  function($scope, $firebase, firebaseFactory){
+app.controller("GameController",  function($scope, $firebase, $location, firebaseFactory){
 	// game related variables
   
 	$scope.game = firebaseFactory.getObject('game');

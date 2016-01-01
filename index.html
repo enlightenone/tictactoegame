@@ -24,6 +24,7 @@
 		<script src="js/ng-app/controllers/gameController.js"></script>
 		<script src="js/ng-app/controllers/usersController.js"></script>
 		<script src="js/ng-app/factories/factories.js"></script>
+		<script src="js/ng-app/directives/directives.js"></script>
 	</head>
 
 	<body ng-controller="GameController">
@@ -73,53 +74,7 @@
 	              Red Team Forfeits. Blue Team Wins The Game!
 		  	</div> 
 
-			<div class="gridcontainer" ng-if="game.gameStart" >
-		  	<div class="board" >
-			  	<side class="front" >
-					  <div class="line1"></div>
-					  <div class="line2"></div>
-					  <div class="line3"></div>
-					  <div class="line4"></div>
-					  <div class="innerline1"></div>
-					  <div class="innerline2"></div>
-					  <div class="innerline3"></div>
-					  <div class="innerline4"></div>
-
-				  	<table>
-				  		<tr>
-				  			<td ng-click="gamePlay(0, 1)">{{game.grid[0]}}</td>
-				  			<td ng-click="gamePlay(1, 1)">{{game.grid[1]}}</td>
-				  			<td ng-click="gamePlay(2, 1)">{{game.grid[2]}}</td>
-				  		</tr>
-				  		<tr>
-				  			<td ng-click="gamePlay(3, 2)">{{game.grid[3]}}</td>
-				  			<td ng-click="gamePlay(4, 2)">{{game.grid[4]}}</td>
-				  			<td ng-click="gamePlay(5, 2)">{{game.grid[5]}}</td>
-				  		</tr>
-				  		<tr>
-				  			<td ng-click="gamePlay(6, 3)">{{game.grid[6]}}</td>
-				  			<td ng-click="gamePlay(7, 3)">{{game.grid[7]}}</td>
-				  			<td ng-click="gamePlay(8, 3)">{{game.grid[8]}}</td>
-				  		</tr>
-				  	</table>
-					</side>
-
-					<side class="back">
-					</side>
-					<side class="right">
-						<div class="borderline1"></div>
-					</side>
-					<side class="left">
-					  <div class="borderline2"></div>
-					</side>
-					<side class="top">
-						<div class="borderline3"></div>
-					</side>
-					<side class="bottom">
-					  <div class="borderline4"></div>
-          </side>
-		  	</div>  <!-- End of <div class="board" > block -->
-	  	</div> <!--  End of <div class="gridcontainer" ng-if="game.gameStart" > -->
+		  	<game-template type="game-table"></game-template>
 	  </div>  <!-- End of <div class="wrapper"> -->
 	 </section>
 
