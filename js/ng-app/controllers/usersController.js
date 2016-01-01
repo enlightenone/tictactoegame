@@ -1,5 +1,6 @@
 // User Log in Users Controller
 app.controller("UsersController",  function($scope, $firebase, firebaseFactory, gameFactory){
+
     $scope.uniId  = gameFactory.makeId();
         /*......define database................*/
     var fb = firebaseFactory.getFirebaseRef('players');
@@ -74,9 +75,7 @@ app.controller("UsersController",  function($scope, $firebase, firebaseFactory, 
               } // End of if (s== "blue") else if conditional statement block
             } else {
                 $scope.unseatedDisplay = true ;
-                console.log($scope.unseatedDisplay);
                 fb.$update( s, {occupied: true, player: $scope.uniId });
-
             }// End of if(answer) conditional statement block
          } // End of if($scope.game.gameStart == true) conditonal statement block
       }; // End of $scope.abandonGame function block
