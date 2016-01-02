@@ -1,0 +1,143 @@
+/*general css selectors*/
+
+.clear {
+	clear:both;
+}
+
+.wrapper {
+	width: 800px;
+	margin: 0 auto;
+}
+
+body {
+	background: url(../img/tron_background3.jpg);
+	background-size: 100% 100%;
+  background-repeat: no-repeat;
+  font-family:'Audiowide', Arial;
+}
+
+/*Header Section*/
+header {
+	height: 200px;
+	padding-top: 50px;
+}
+
+#score_section {
+	position: relative;
+	height: 125px;
+}
+
+
+.redhightlight{
+	color: red;
+	font-weight: bolder;
+}
+
+.bluehightlight{
+	color: blue;
+	font-weight: bolder;
+}
+
+/*score circle*/
+
+
+.redscore1, .redscore2, .redscore3 { 
+	background-color: red;
+}
+
+.bluescore1, .bluescore2, .bluescore3 {
+	background-color: blue;
+}
+
+/*Middle Section*/
+section {
+	height: 700px;
+}
+
+table {
+	width: 450px;
+	height: 450px;
+	margin: 0 auto;
+	margin-top: 25px;
+}
+
+table tr {
+	width: 450px;
+	height: 150px
+}
+
+table tr td {
+	width: 150px;
+	/*height: 150px;*/
+/*	border: 3px solid black;*/
+	text-align: center;
+	line-height: 150px;
+	font-size: 80px;
+	font-weight: bolder;
+	color: #00CAFC;
+}
+
+
+/*Footer Section*/
+
+footer {
+	height: 350px;
+}
+
+#footer_display{
+/*   border: 3px solid black;*/
+
+}
+
+/*Register Box*/
+#register_box{
+	height: 250px;
+	margin-top: 30px;
+	padding: 15px;
+}
+
+.sideoption{
+	width: 250px;
+	height: 100px;
+	background-color: #2E31F5 ;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: 50px;
+	text-align: center;
+	line-height: 100px;
+	color: white;
+}
+
+.sideoption_clicked {
+	width: 250px;
+	height: 100px;
+	background-color: #FAE9AC ;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: 50px;
+	text-align: center;
+	line-height: 100px;
+	color: #09C7D5;
+}
+
+.play_game {
+	 width: 260px; 
+	 height: 200px; 
+	 float: left; 
+	 margin: 0 auto;
+}
+
+.play_button{
+	width: 300px;
+	height: 100px;
+	background-color: #2E31F5 ;
+	border-radius: 10px;
+	font-weight: bold;
+	font-size: 45px;
+	text-align: center;
+	line-height: 100px;
+	color: white;
+	margin: 0 auto;
+}
+
+

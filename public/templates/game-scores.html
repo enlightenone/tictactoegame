@@ -1,0 +1,23 @@
+<div  id="score_section" class="wrapper" >
+  <div class="redteam" ng-class="{redhightlight: game.colorSwitch.red }"> 
+    <div class="topRedContent">  
+      <span class="redpointcircle" ng-class="{redpointcirclehighlight: player.redScore[0]}"> </span>
+      <span class="redpointcircle" ng-class="{redpointcirclehighlight: player.redScore[1]}"></span>
+      <span class="redpointcircle" ng-class="{redpointcirclehighlight: player.redScore[2]}"></span>
+      <span id="redscore">{{player.redTotalScores}}</span>
+    </div>      
+  </div>
+  <div class="blueteam" ng-class="{bluehightlight: game.colorSwitch.blue}">
+    <div class="topBlueContent">  
+      <span id="bluescore">{{player.blueTotalScores}}</span>
+      <span class="bluepointcircle" ng-class="{bluepointcirclehighlight: player.blueScore[2]}"></span>
+      <span class="bluepointcircle" ng-class="{bluepointcirclehighlight: player.blueScore[1]}"></span>
+      <span class="bluepointcircle" ng-class="{bluepointcirclehighlight: player.blueScore[0]}"></span>
+    </div>  
+  </div>
+  <div class="clear"></div>
+  </div>
+  <div id="message" class="wrapper">
+    <span ng-class="{redwin: game.redWinFlag, bluewin: game.blueWinFlag, draw: game.drawFlag}">{{game.outcome}}</span>
+  <div class="clear"></div>
+</div>
